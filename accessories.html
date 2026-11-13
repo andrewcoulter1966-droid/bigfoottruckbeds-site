@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessories. Bigfoot Truck Beds.</title>
+  <meta name="description" content="Toolboxes, headache racks, gooseneck plates, receivers, lights and finishes for Bigfoot steel truck beds." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/shop.css" />
+</head>
+<body data-solid-header="1">
+  <header class="site-header solid">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Bigfoot Truck Beds home"><img class="emblem" src="assets/img/logo.svg" alt="Bigfoot Truck Beds" /></a>
+      <nav class="nav" aria-label="Main"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a></nav>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:8635897616"><small>Call the shop</small>(863) 589-7616</a>
+        <a class="btn btn-primary btn-sm" href="build.html">Build Yours</a>
+        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" aria-label="Mobile"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a><a href="tel:8635897616">(863) 589-7616</a></nav>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <h1>Accessories.</h1>
+        <p class="lead">Everything bolts or welds on at the shop before the bed ships. Most of it you can add in the builder and see on the bed.</p>
+      </div>
+    </section>
+    <section class="block tight">
+      <div class="container acc-groups" id="groups"></div>
+    </section>
+    <section class="cta-band">
+      <video data-lazy muted loop playsinline preload="none" data-src="assets/video/press-brake.mp4" aria-hidden="true"></video>
+      <div class="container inner">
+        <div><h2>See them on your bed.</h2><p class="lead" style="margin-top:10px">The builder shows every box, rack and hitch on the bed before you ask for a price.</p></div>
+        <div class="hero-cta" style="margin:0"><a class="btn btn-primary btn-lg" href="build.html">Build Yours</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="cols">
+        <div><img src="assets/img/logo-stacked.svg" alt="Bigfoot Truck Beds" style="height:60px;margin-bottom:14px" /><p>A division of Bigfoot Trailers. Steel truck beds built in Mulberry, Florida.</p></div>
+        <div><h4>Beds</h4><a href="bed.html?s=track">Track flatbed</a><a href="bed.html?s=ridge">Ridge skirted</a><a href="bed.html?s=hauler">Hauler hotshot</a><a href="bed.html?s=range">Range bale bed</a><a href="bed.html?s=crew">Crew service body</a></div>
+        <div><h4>Buy</h4><a href="build.html">Build yours</a><a href="accessories.html">Accessories</a><a href="beds.html">Fit guide</a></div>
+        <div><h4>Shop</h4><a href="tel:8635897616">(863) 589-7616</a><a href="https://bigfoottrailers.net" rel="noopener">Bigfoot Trailers</a></div>
+      </div>
+      <div class="fine"><span>&copy; 2026 Bigfoot Trailers. Mulberry, FL.</span><span>Specs shown are the standard build and may change. Confirm with the shop before you order.</span></div>
+    </div>
+  </footer>
+  <div class="demo-note"><b>Demo build.</b> Accessory list is a starting catalog for the truck bed team to edit, not a confirmed one. No pricing is shown yet.</div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script>
+    // simple line icons (stroke only, one family, square caps)
+    const ICO = {
+      ball: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20h16M8 20v-4h8v4"/></svg>',
+      receiver: '<svg viewBox="0 0 24 24"><rect x="8" y="8" width="8" height="8"/><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/></svg>',
+      plug: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/></svg>',
+      winch: '<svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="5"/><path d="M12 15v7M4 22h16M7 10h10"/></svg>',
+      box: '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13"/><path d="M3 11h18M9 4h6v3"/></svg>',
+      drawer: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7"/><rect x="3" y="13" width="18" height="7"/><path d="M10 7.5h4M10 16.5h4"/></svg>',
+      rack: '<svg viewBox="0 0 24 24"><path d="M4 20V5h16v15M4 11h16M9 5v15M15 5v15"/></svg>',
+      ladder: '<svg viewBox="0 0 24 24"><path d="M7 2v20M17 2v20M7 7h10M7 12h10M7 17h10"/></svg>',
+      light: '<svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="8"/><path d="M8 4l-2 4M16 4l2 4M8 20l-2-4M16 20l2-4"/></svg>',
+      camera: '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12"/><circle cx="12" cy="13" r="3.5"/><path d="M8 7l2-3h4l2 3"/></svg>',
+      deck: '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18M3 14h18M9 4v16M15 4v16"/></svg>',
+      fuel: '<svg viewBox="0 0 24 24"><rect x="4" y="3" width="11" height="18"/><path d="M15 9h3l3 3v6a2 2 0 0 1-4 0v-5h-2M7 7h5v4H7z"/></svg>',
+      flap: '<svg viewBox="0 0 24 24"><path d="M6 3h12v18H6zM9 7v10M15 7v10"/></svg>',
+      paint: '<svg viewBox="0 0 24 24"><path d="M4 4h12v6H4zM16 7h4v5h-8v9h-2v-11h6z"/></svg>',
+    };
+    const D = window.BF;
+    document.getElementById('groups').innerHTML = D.ACCESSORIES.map(g => `
+      <div class="reveal"><h2 style="font-size:clamp(28px,3vw,40px);margin-bottom:16px">${g.group}</h2>
+        <div class="acc-grid">${g.items.map(a => `<div class="acc"><div class="ico">${ICO[a.ico] || ICO.box}</div><b>${a.name}</b><p>${a.desc}</p><div class="fits-on">Fits: ${a.fits}</div></div>`).join('')}</div></div>`).join('');
+    document.querySelectorAll('.reveal').forEach(el => { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1 }); io.observe(el); });
+  </script>
+</body>
+</html>

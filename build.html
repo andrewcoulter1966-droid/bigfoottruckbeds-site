@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build your bed in 3D. Bigfoot Truck Beds.</title>
+  <meta name="description" content="Pick your truck, pick the bed, add options and watch it change in 3D. Send the build to the shop in Mulberry for a price." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/shop.css" />
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.js","three/addons/controls/OrbitControls.js":"./assets/vendor/three/OrbitControls.js","three/addons/environments/RoomEnvironment.js":"./assets/vendor/three/RoomEnvironment.js"}}</script>
+</head>
+<body data-solid-header="1">
+  <header class="site-header solid">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Bigfoot Truck Beds home"><img class="emblem" src="assets/img/logo.svg" alt="Bigfoot Truck Beds" /></a>
+      <nav class="nav" aria-label="Main"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a></nav>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:8635897616"><small>Call the shop</small>(863) 589-7616</a>
+        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" aria-label="Mobile"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a><a href="tel:8635897616">(863) 589-7616</a></nav>
+
+  <main class="cfg">
+    <section class="cfg-stage" id="stage" aria-label="3D view of your bed">
+      <div class="stage-top">
+        <div class="title"><h2 id="stage-title">Your bed</h2><p id="stage-sub">Start with your truck.</p></div>
+        <div class="colors" id="colors" aria-label="Color"></div>
+      </div>
+      <div class="stage-bottom">
+        <div class="views" aria-label="Camera">
+          <button type="button" data-view="hero" aria-pressed="true">3/4</button>
+          <button type="button" data-view="side" aria-pressed="false">Side</button>
+          <button type="button" data-view="rear" aria-pressed="false">Rear</button>
+          <button type="button" data-view="top" aria-pressed="false">Top</button>
+        </div>
+        <div class="dims" id="dims">Pick your truck to size the bed</div>
+      </div>
+      <div class="cfg-ann" aria-hidden="true"></div>
+      <aside class="cutsheet chamfer" id="cutsheet" aria-label="Cut sheet">
+        <div class="cutsheet-head"><b>Cut sheet</b><span id="cs-rev">DWG BF-TB-0000 / REV A</span></div>
+        <table id="cs-table"><tbody></tbody></table>
+        <button type="button" class="btn btn-dark btn-sm" id="cs-print" style="width:100%">Print this sheet</button>
+      </aside>
+      <div class="nogl"><p>The 3D builder needs a graphics-capable browser. Open this page in Chrome or Safari on your phone or laptop, or call the shop and we will spec it with you.</p></div>
+    </section>
+
+    <aside class="cfg-panel">
+      <div class="cfg-steps" role="list">
+        <button type="button" data-step="1"><b>Truck</b><small>Step 1</small></button>
+        <button type="button" data-step="2"><b>Bed</b><small>Step 2</small></button>
+        <button type="button" data-step="3"><b>Options</b><small>Step 3</small></button>
+        <button type="button" data-step="4"><b>Send</b><small>Step 4</small></button>
+      </div>
+      <div class="cfg-body"></div>
+      <div class="cfg-foot">
+        <div class="sum"></div>
+        <div style="display:flex;gap:8px"><button type="button" class="btn btn-dark btn-sm" id="back">Back</button><button type="button" class="btn btn-primary btn-sm" id="next">Next</button></div>
+      </div>
+    </aside>
+  </main>
+  <div class="demo-note"><b>Demo build.</b> Bed names and specs are placeholders. Sends go to a local log, not the CRM, until the shop turns it on.</div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script type="module" src="assets/js/build.js"></script>
+</body>
+</html>

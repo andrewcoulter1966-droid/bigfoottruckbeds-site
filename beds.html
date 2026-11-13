@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The beds. Bigfoot Truck Beds.</title>
+  <meta name="description" content="Five steel bed series: open flatbed, skirted, hotshot, bale bed and service body. Filter by your truck to see what fits." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/shop.css" />
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.js","three/addons/controls/OrbitControls.js":"./assets/vendor/three/OrbitControls.js","three/addons/environments/RoomEnvironment.js":"./assets/vendor/three/RoomEnvironment.js"}}</script>
+</head>
+<body data-solid-header="1">
+  <header class="site-header solid">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Bigfoot Truck Beds home"><img class="emblem" src="assets/img/logo.svg" alt="Bigfoot Truck Beds" /></a>
+      <nav class="nav" aria-label="Main"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a></nav>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:8635897616"><small>Call the shop</small>(863) 589-7616</a>
+        <a class="btn btn-primary btn-sm" href="build.html">Build Yours</a>
+        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" aria-label="Mobile"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a><a href="tel:8635897616">(863) 589-7616</a></nav>
+
+  <main>
+    <section class="page-head">
+      <div class="container">
+        <h1>The beds.</h1>
+        <p class="lead">Five series, seven sizes. Filter by the size your truck takes, or pick the truck and let us do it.</p>
+      </div>
+    </section>
+
+    <section class="block tight">
+      <div class="container beds-split">
+        <div>
+          <div class="pills" id="pills" role="group" aria-label="Filter by bed size"></div>
+          <div class="grid-beds" id="grid" style="margin-top:22px" data-stagger></div>
+        </div>
+        <form class="fitbox" id="fit" onsubmit="return false" style="position:sticky;top:96px">
+          <h3>Filter by truck</h3>
+          <p class="hint">We pick the size for you.</p>
+          <div class="field"><label for="f-make">Make</label><select id="f-make" data-make></select></div>
+          <div class="field"><label for="f-model">Model</label><select id="f-model" data-model></select></div>
+          <div class="field"><label for="f-body">Rear wheels and bed</label><select id="f-body" data-body></select></div>
+          <div class="fit-result" data-out></div>
+          <a class="btn btn-primary" style="width:100%;margin-top:12px" data-go href="build.html">Build Yours</a>
+        </form>
+      </div>
+    </section>
+
+    <section class="block" style="background:var(--ink-2)">
+      <div class="container">
+        <div class="sec-head reveal"><h2>Size guide.</h2><p class="lead">Which bed goes on which truck. Measure cab to axle from the back of the cab to the center of the rear hub.</p></div>
+        <div class="compare-wrap reveal">
+          <table class="compare" id="sizes"></table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="cols">
+        <div><img src="assets/img/logo-stacked.svg" alt="Bigfoot Truck Beds" style="height:60px;margin-bottom:14px" /><p>A division of Bigfoot Trailers. Steel truck beds built in Mulberry, Florida.</p></div>
+        <div><h4>Beds</h4><a href="bed.html?s=track">Track flatbed</a><a href="bed.html?s=ridge">Ridge skirted</a><a href="bed.html?s=hauler">Hauler hotshot</a><a href="bed.html?s=range">Range bale bed</a><a href="bed.html?s=crew">Crew service body</a></div>
+        <div><h4>Buy</h4><a href="build.html">Build yours</a><a href="accessories.html">Accessories</a><a href="beds.html">Fit guide</a></div>
+        <div><h4>Shop</h4><a href="tel:8635897616">(863) 589-7616</a><a href="https://bigfoottrailers.net" rel="noopener">Bigfoot Trailers</a></div>
+      </div>
+      <div class="fine"><span>&copy; 2026 Bigfoot Trailers. Mulberry, FL.</span><span>Specs shown are the standard build and may change. Confirm with the shop before you order.</span></div>
+    </div>
+  </footer>
+  <div class="demo-note"><b>Demo build.</b> Bed names, specs, features and shop claims are placeholders for the truck bed team to confirm. No pricing is shown yet.</div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script type="module">
+    import { thumbnail, webglOK } from './assets/js/bed3d.js';
+    const D = window.BF; let filter = '';
+    const pills = document.getElementById('pills'), grid = document.getElementById('grid');
+    const sizeKeys = Object.keys(D.SIZES);
+    pills.innerHTML = `<button type="button" class="pill" data-k="" aria-pressed="true">All sizes</button>` + sizeKeys.map(k => `<button type="button" class="pill" data-k="${k}" aria-pressed="false">${D.SIZES[k].label}</button>`).join('');
+    pills.addEventListener('click', e => { const b = e.target.closest('.pill'); if (!b) return; filter = b.dataset.k; pills.querySelectorAll('.pill').forEach(x => x.setAttribute('aria-pressed', x === b)); render(); });
+    const thumbs = {};
+    function render() {
+      const list = filter ? D.seriesThatFit(filter) : D.SERIES;
+      grid.classList.remove('in');
+      grid.innerHTML = list.map(s => { const z = D.SIZES[filter && s.fits.includes(filter) ? filter : (s.fits.includes('LB_SRW') ? 'LB_SRW' : s.fits[0])]; return `
+        <article class="bed-card">
+          <div class="thumb"><div class="sk"></div><img data-slug="${s.slug}" data-size="${z.key}" alt="${s.name} ${s.kicker}" /></div>
+          <div class="body"><span class="for">${s.kicker}</span><h3>${s.name}</h3><p>${s.blurb}</p>
+            <div class="meta"><span><b>${s.fits.length}</b> sizes</span><span><b>${z.label}</b> shown</span><span><b>${s.std.length}</b> standard items</span></div></div>
+          <a class="go" href="bed.html?s=${s.slug}${filter ? '&z=' + filter : ''}" aria-label="Open the ${s.name}"></a>
+        </article>`; }).join('');
+      requestAnimationFrame(() => grid.classList.add('in'));
+      if (!webglOK()) return;
+      const imgs = [...grid.querySelectorAll('img[data-slug]')]; let i = 0;
+      const next = () => { if (i >= imgs.length) return; const img = imgs[i++]; const key = img.dataset.slug + '|' + img.dataset.size;
+        if (!thumbs[key]) thumbs[key] = thumbnail(D.params(D.seriesBySlug(img.dataset.slug), D.SIZES[img.dataset.size]), 640, 480);
+        img.src = thumbs[key]; img.onload = () => { const sk = img.previousElementSibling; if (sk) sk.remove(); }; requestAnimationFrame(next); };
+      requestAnimationFrame(next);
+    }
+    render();
+    BF_fitWidget(document.getElementById('fit'), (s) => { filter = s.body; pills.querySelectorAll('.pill').forEach(x => x.setAttribute('aria-pressed', x.dataset.k === filter)); render(); });
+    // size guide table
+    const t = document.getElementById('sizes');
+    t.innerHTML = `<thead><tr><th>Truck</th><th>Setup</th><th>Cab to axle</th><th>Bed size</th><th>Beds</th></tr></thead><tbody>` +
+      D.MAKES.flatMap(m => m.models.flatMap(md => md.bodies.map(b => { const z = D.SIZES[b]; return `<tr><td>${m.name} ${md.name}</td><td>${D.BODIES[b].label}</td><td>${z.ca}</td><td class="yes">${z.label}</td><td>${D.seriesThatFit(b).map(s => s.name).join(', ')}</td></tr>`; }))).join('') + '</tbody>';
+  </script>
+</body>
+</html>

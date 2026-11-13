@@ -1,0 +1,13 @@
+# Bigfoot Truck Beds
+# Every crawler is welcome, including search and AI search bots.
+
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://bigfoottruckbeds.com/sitemap.xml

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bigfoot Truck Beds</title>
+  <meta name="description" content="Bigfoot steel truck bed: specs, standard features, options and the trucks it fits. Spin it in 3D." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <link rel="stylesheet" href="assets/css/shop.css" />
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.js","three/addons/controls/OrbitControls.js":"./assets/vendor/three/OrbitControls.js","three/addons/environments/RoomEnvironment.js":"./assets/vendor/three/RoomEnvironment.js"}}</script>
+</head>
+<body data-solid-header="1">
+  <header class="site-header solid">
+    <div class="container inner">
+      <a class="brand" href="index.html" aria-label="Bigfoot Truck Beds home"><img class="emblem" src="assets/img/logo.svg" alt="Bigfoot Truck Beds" /></a>
+      <nav class="nav" aria-label="Main"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a></nav>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:8635897616"><small>Call the shop</small>(863) 589-7616</a>
+        <a class="btn btn-primary btn-sm" href="build.html" id="hdr-build">Build Yours</a>
+        <button class="mobile-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="mobile-nav" aria-label="Mobile"><a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="index.html#shop">The Shop</a><a href="tel:8635897616">(863) 589-7616</a></nav>
+
+  <main>
+    <section class="page-head" style="padding-bottom:24px">
+      <div class="container">
+        <div class="crumbs"><a href="beds.html">Beds</a><span>/</span><span id="c-name">Bed</span></div>
+        <div class="detail-hero">
+          <div>
+            <div class="viewer" id="viewer">
+              <span class="vtag">Live 3D. Drag to spin</span>
+              <div class="vhelp">
+                <div style="display:flex;gap:6px"><button type="button" data-view="hero">3/4</button><button type="button" data-view="side">Side</button><button type="button" data-view="rear">Rear</button><button type="button" data-view="top">Top</button></div>
+                <span id="size-tag"></span>
+              </div>
+              <div class="nogl"><p>3D needs a graphics-capable browser. Open this page in Chrome or Safari on your phone or laptop.</p></div>
+            </div>
+            <div class="pills" id="size-pills" style="margin-top:12px" aria-label="Show this bed in another size"></div>
+          </div>
+          <div>
+            <p class="gold" style="font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-size:13px" id="kicker"></p>
+            <h1 id="name" style="font-size:clamp(48px,6vw,88px)"></h1>
+            <p class="lead" id="blurb" style="margin-top:14px"></p>
+            <div class="hero-cta" style="margin-top:22px"><a class="btn btn-primary btn-lg" id="cta-build" href="build.html">Build This Bed</a><a class="btn btn-ghost btn-lg" href="tel:8635897616">Ask the Shop</a></div>
+            <div class="spec-tiles" id="tiles" style="margin-top:26px"></div>
+            <div class="fits"><h3>Fits</h3><ul id="fits"></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" style="background:var(--ink-2)">
+      <div class="container">
+        <div class="feature-cols">
+          <div><h2 style="font-size:clamp(28px,3vw,40px);margin-bottom:14px">Standard</h2><ul id="std"></ul></div>
+          <div><h2 style="font-size:clamp(28px,3vw,40px);margin-bottom:14px">Options</h2><ul id="opts"></ul><p class="muted" style="margin-top:16px;font-size:14px">Every option here is in the 3D builder. <a class="gold" id="opt-link" href="build.html">Add them and watch the bed change.</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container split">
+        <div class="media reveal"><video data-lazy muted loop playsinline preload="none" data-src="assets/video/welds-close.mp4"></video></div>
+        <div class="reveal"><h2>Same floor as the trailers.</h2><p class="lead" style="margin-top:14px">The beds are built in the Bigfoot Trailers shop in Mulberry, by the same crew, out of the same steel.</p><div class="hero-cta"><a class="btn btn-ghost" href="index.html#shop">See the Shop</a></div></div>
+      </div>
+    </section>
+
+    <section class="block tight" style="background:var(--ink-2)">
+      <div class="container">
+        <div class="sec-head reveal"><h2 style="font-size:clamp(28px,3vw,40px)">Other beds.</h2></div>
+        <div class="grid-beds" id="others"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="cols">
+        <div><img src="assets/img/logo-stacked.svg" alt="Bigfoot Truck Beds" style="height:60px;margin-bottom:14px" /><p>A division of Bigfoot Trailers. Steel truck beds built in Mulberry, Florida.</p></div>
+        <div><h4>Beds</h4><a href="bed.html?s=track">Track flatbed</a><a href="bed.html?s=ridge">Ridge skirted</a><a href="bed.html?s=hauler">Hauler hotshot</a><a href="bed.html?s=range">Range bale bed</a><a href="bed.html?s=crew">Crew service body</a></div>
+        <div><h4>Buy</h4><a href="build.html">Build yours</a><a href="accessories.html">Accessories</a><a href="beds.html">Fit guide</a></div>
+        <div><h4>Shop</h4><a href="tel:8635897616">(863) 589-7616</a><a href="https://bigfoottrailers.net" rel="noopener">Bigfoot Trailers</a></div>
+      </div>
+      <div class="fine"><span>&copy; 2026 Bigfoot Trailers. Mulberry, FL.</span><span>Specs shown are the standard build and may change. Confirm with the shop before you order.</span></div>
+    </div>
+  </footer>
+  <div class="demo-note"><b>Demo build.</b> Bed names, specs, features and shop claims are placeholders for the truck bed team to confirm. No pricing is shown yet.</div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script type="module">
+    import { BedViewer, thumbnail, webglOK } from './assets/js/bed3d.js';
+    import { Annotator } from './assets/js/annotate.js';
+    const D = window.BF; const q = new URLSearchParams(location.search);
+    const s = D.seriesBySlug(q.get('s')) || D.SERIES[0];
+    let zKey = s.fits.includes(q.get('z')) ? q.get('z') : (s.fits.includes('LB_SRW') ? 'LB_SRW' : s.fits[0]);
+    document.title = `${s.name} ${s.kicker}. Bigfoot Truck Beds.`;
+    document.getElementById('c-name').textContent = s.name; document.getElementById('kicker').textContent = s.kicker;
+    document.getElementById('name').textContent = s.name; document.getElementById('blurb').textContent = s.blurb;
+    const LBL = { deck: 'Deck plate', sills: 'Long sills', cross: 'Crossmembers', gn: 'Gooseneck', boxes: 'Toolboxes', recv: 'Receiver', rack: 'Headache rack', arms: 'Bale arms', spikes: 'Spikes' };
+    document.getElementById('tiles').innerHTML = Object.entries(s.specs).map(([k, v]) => `<div><div class="v">${v}</div><div class="l">${LBL[k] || k}</div></div>`).join('');
+    document.getElementById('fits').innerHTML = s.fits.map(k => `<li><span>${D.BODIES[k].label}</span><span>${D.SIZES[k].label}</span></li>`).join('');
+    document.getElementById('std').innerHTML = s.std.map(x => `<li>${x}</li>`).join('');
+    document.getElementById('opts').innerHTML = s.opts.map(x => `<li class="opt">${x}</li>`).join('');
+    const buildHref = () => `build.html#s=${s.slug}`;
+    ['cta-build', 'opt-link', 'hdr-build'].forEach(id => document.getElementById(id).href = buildHref());
+    const pills = document.getElementById('size-pills');
+    pills.innerHTML = s.fits.map(k => `<button type="button" class="pill" data-k="${k}" aria-pressed="${k === zKey}">${D.SIZES[k].label}</button>`).join('');
+    document.getElementById('others').innerHTML = D.SERIES.filter(x => x !== s).map(o => `<article class="bed-card"><div class="thumb"><div class="sk"></div><img data-slug="${o.slug}" alt="${o.name}" /></div><div class="body"><span class="for">${o.kicker}</span><h3>${o.name}</h3><p>${o.forWho}</p></div><a class="go" href="bed.html?s=${o.slug}" aria-label="Open the ${o.name}"></a></article>`).join('');
+    const tag = () => document.getElementById('size-tag').textContent = `${D.SIZES[zKey].label} shown`;
+    tag();
+    if (webglOK()) {
+      const vEl = document.getElementById('viewer');
+      const v = new BedViewer(vEl); v.heroPull = (window.innerWidth <= 900 ? 1.88 : 1.42); v.set(D.params(s, D.SIZES[zKey])); v.view('hero'); setTimeout(() => { v.auto = true; }, 400);
+      // live dimensions on the detail model, same engine as the home hero
+      const annHost = document.createElement('div'); annHost.className = 'cfg-ann'; vEl.appendChild(annHost);
+      const ann = new Annotator(annHost, v);
+      const FTx = n => { const f = Math.floor(n / 12), i = Math.round(n % 12); return i ? `${f}' ${i}"` : `${f}' 0"`; };
+      const setAnn = () => { const p = v.params; ann.set([
+        { kind: 'dim', a: [-p.width / 2, 0, -p.length / 2], b: [-p.width / 2, 0, p.length / 2], label: FTx(p.length), off: 40 },
+        { kind: 'dim', a: [-p.width / 2, 0, p.length / 2], b: [p.width / 2, 0, p.length / 2], label: p.width + '"', off: 32, flip: true },
+      ]); };
+      setAnn(); let fcount = 0; v.onFrame = () => { if ((fcount++ & 1) === 0) ann.draw(); };
+      document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => v.view(b.dataset.view)));
+      pills.addEventListener('click', e => { const b = e.target.closest('.pill'); if (!b) return; zKey = b.dataset.k; pills.querySelectorAll('.pill').forEach(x => x.setAttribute('aria-pressed', x === b)); v.set(D.params(s, D.SIZES[zKey])); tag(); setAnn(); });
+      const imgs = [...document.querySelectorAll('#others img[data-slug]')]; let i = 0;
+      const next = () => { if (i >= imgs.length) return; const img = imgs[i++]; const o = D.seriesBySlug(img.dataset.slug); img.src = thumbnail(D.params(o, D.SIZES[o.fits.includes('LB_SRW') ? 'LB_SRW' : o.fits[0]]), 640, 480); img.onload = () => { const sk = img.previousElementSibling; if (sk) sk.remove(); }; requestAnimationFrame(next); };
+      setTimeout(() => requestAnimationFrame(next), 300);
+    } else { document.getElementById('viewer').classList.add('nogl'); }
+  </script>
+</body>
+</html>

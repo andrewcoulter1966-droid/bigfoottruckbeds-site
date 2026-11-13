@@ -1,0 +1,823 @@
+/* ==========================================================================
+   BIGFOOT TRUCK BEDS - "THE CUT SHEET"  design layer v2  (10/19/26)
+   Loaded AFTER site.css. Retokenizes the whole site and replaces the
+   generic-dark tells with a fabrication-drawing language:
+     - steel plate ground with a hairline drawing grid + real film grain
+     - mono dimension type, leader lines, corner tick brackets
+     - notched / square plate panels, zero radius, zero glow, zero gradient-text
+     - clip-path wipe reveals instead of fade+translateY
+     - live dimension annotations projected off the 3D bed
+   ONE accent: --gold. Dark locked.
+   ========================================================================== */
+
+:root {
+  /* ground + plate */
+  --ink: #07080a;
+  --ink-2: #0c0e10;
+  --ink-3: #121518;
+  --steel: #1b1f23;
+  --steel-2: #24292e;
+  --line: rgba(234, 240, 246, 0.085);
+  --line-2: rgba(234, 240, 246, 0.18);
+  --line-3: rgba(234, 240, 246, 0.32);
+  --text: #eef2f5;
+  --muted: #98a1aa;
+  --dim: #646c75;
+  --gold: #EDC108;
+  --gold-2: #FFD93B;
+  --gold-dim: rgba(237, 193, 8, 0.28);
+  --gold-ink: #161200;
+  --max: 1440px;
+  --disp: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --mono: "Azeret Mono", "Roboto Mono", ui-monospace, "Consolas", monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --nav-h: 76px;
+  --grid: 56px;
+}
+
+/* ---------- the drawing sheet: grid + grain, fixed, never scrolls ---------- */
+body { background: var(--ink); position: relative; }
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(234, 240, 246, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 240, 246, 0.028) 1px, transparent 1px),
+    linear-gradient(to right, rgba(234, 240, 246, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 240, 246, 0.055) 1px, transparent 1px);
+  background-size: var(--grid) var(--grid), var(--grid) var(--grid),
+                   calc(var(--grid) * 5) calc(var(--grid) * 5), calc(var(--grid) * 5) calc(var(--grid) * 5);
+  mask-image: radial-gradient(130% 90% at 50% 0%, #000 0%, rgba(0,0,0,0.55) 55%, transparent 100%);
+}
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+}
+/* lift real content above the grid and grain layers WITHOUT touching position:
+   setting position: relative here once un-fixed the header and the demo bar */
+main, footer { position: relative; z-index: 2; }
+.site-header { z-index: 90; }
+.mobile-nav { z-index: 89; }
+.demo-note { z-index: 88; }
+
+/* ---------- type: push the scale past template range ---------- */
+h1, h2, h3, .disp { letter-spacing: -0.015em; line-height: 0.84; }
+h1 { font-size: clamp(52px, 10.5vw, 168px); }
+h2 { font-size: clamp(38px, 6vw, 92px); }
+h3 { font-size: clamp(21px, 2.1vw, 28px); letter-spacing: 0.005em; line-height: 0.95; }
+.lead { font-size: clamp(16px, 1.15vw, 19px); line-height: 1.55; color: var(--muted); max-width: 54ch; }
+
+/* mono data type - the drawing voice */
+.mono, .dimtxt, .sec-index, .stamp, .tag, .vtag, .crumbs, .demo-note, label, .hint, .fine {
+  font-family: var(--mono); font-feature-settings: "tnum" 1;
+}
+.mono { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.mono.g { color: var(--gold); }
+label { font-size: 10.5px !important; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); }
+
+/* section index: 01 / FITMENT  with a rule that runs to the gutter */
+.sec-index {
+  display: flex; align-items: center; gap: 14px; font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--dim); margin-bottom: 26px;
+}
+.sec-index b { color: var(--gold); font-weight: 700; }
+.sec-index::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* ---------- corner tick brackets: the technical signature ---------- */
+.tick { position: relative; }
+.tick::before, .tick::after {
+  content: ""; position: absolute; width: 9px; height: 9px; pointer-events: none;
+  border-color: var(--gold); border-style: solid; border-width: 0;
+}
+.tick::before { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
+.tick::after { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* ---------- plate panels: square, hairline, no shadow ---------- */
+.fitbox, .bed-card, .cfg-panel, .spec-tiles > *, .acc, .faq > *, .std, .compare, .cutsheet {
+  border-radius: 0 !important; box-shadow: none !important; backdrop-filter: none !important;
+}
+/* The beds page split. This used to be an inline grid-template-columns:1fr 360px
+   on the element, which no media query could reach, so on a phone the whole fit
+   finder sat 348px off the right edge - unreachable, and invisible only because
+   body still carried overflow-x: hidden. */
+.beds-split { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 32px; align-items: start; }
+@media (max-width: 900px) {
+  .beds-split { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .beds-split .fitbox { position: static !important; order: -1; }
+}
+.fitbox {
+  background: linear-gradient(180deg, rgba(20, 24, 28, 0.96), rgba(10, 12, 14, 0.96));
+  border: 1px solid var(--line-2); padding: 0;
+}
+.fitbox-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+  padding: 13px 18px; border-bottom: 1px solid var(--line-2); background: rgba(237, 193, 8, 0.05);
+}
+.fitbox-head h3 { font-size: 21px; margin: 0; }
+.fitbox-body { padding: 18px; }
+.fitbox .hint { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* inputs read like a form on a shop ticket */
+select, input, textarea {
+  border-radius: 0 !important; background: #0a0c0e !important; border: 1px solid var(--line-2) !important;
+  color: var(--text) !important; font-family: var(--body) !important;
+}
+select:focus, input:focus, textarea:focus { outline: none; border-color: var(--gold) !important; box-shadow: inset 0 -2px 0 var(--gold) !important; }
+
+/* buttons: squared, tracked, with a shear on the primary */
+.btn { border-radius: 0 !important; letter-spacing: 0.1em; }
+.btn-primary { position: relative; overflow: hidden; }
+.btn-primary::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+  transform: translateX(-120%); transition: transform 0.55s var(--ease);
+}
+.btn-primary:hover::after { transform: translateX(120%); }
+.btn-ghost { border-color: var(--line-2); }
+.btn-ghost:hover { background: rgba(237, 193, 8, 0.07); }
+
+/* ---------- motion: wipe, not fade-up (the AI tell) ---------- */
+.reveal { opacity: 1; transform: none; clip-path: inset(0 0 100% 0); transition: clip-path 0.85s var(--ease); }
+.reveal.in { clip-path: inset(0 0 0 0); }
+[data-stagger] > * { opacity: 0; transform: translateY(10px); }
+@media (prefers-reduced-motion: reduce) { .reveal { clip-path: none !important; } }
+
+/* ============================ HEADER ============================ */
+.site-header { background: linear-gradient(180deg, rgba(7,8,10,0.94), rgba(7,8,10,0)); }
+.site-header.solid { background: rgba(7, 8, 10, 0.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+.brand { display: flex; align-items: center; gap: 11px; }
+/* the lockup is the master trailer logo proportion, 6.5:1, so it is sized by
+   height and left to run as wide as it needs */
+.brand .emblem { height: 30px; width: auto; display: block; }
+.brand img { height: 26px; }
+.brand .rule { width: 1px; height: 26px; background: var(--line-2); }
+.nav > a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #c3ccd4; }
+.header-phone { font-family: var(--mono) !important; font-size: 14px !important; letter-spacing: 0.02em; }
+.header-phone small { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em; }
+
+/* ============================ HERO ============================ */
+.hero { min-height: 100svh; padding: 0; display: block; }
+.hero-scene { position: relative; height: 100svh; }
+.hero-stage { position: absolute; inset: 0; z-index: 0; }
+.hero-stage canvas { position: absolute; inset: 0; }
+.hero-stage .nogl { position: absolute; inset: auto 0 0 0; }
+.hero-vignette {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(90% 70% at 62% 42%, transparent 35%, rgba(7,8,10,0.55) 100%),
+    linear-gradient(90deg, rgba(7,8,10,0.92) 0%, rgba(7,8,10,0.55) 34%, transparent 62%),
+    linear-gradient(0deg, var(--ink) 0%, rgba(7,8,10,0.6) 16%, transparent 40%);
+}
+/* annotation overlay: SVG dimension lines drawn from projected 3D points */
+.hero-ann { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.hero-ann svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.hero-ann .dl { stroke: var(--gold); stroke-width: 1; fill: none; opacity: 0.92;
+  stroke-dasharray: var(--len, 600); stroke-dashoffset: var(--len, 600);
+  animation: draw 0.7s var(--ease) forwards; }
+.hero-ann .dl.thin { stroke: var(--line-3); }
+.hero-ann .dot { fill: var(--gold); }
+.hero-ann text {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; fill: #fff;
+  text-transform: uppercase; opacity: 0; animation: annin 0.4s 0.35s var(--ease) forwards;
+}
+.hero-ann text.d { fill: var(--gold); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes annin { to { opacity: 1; } }
+
+.hero-copy {
+  position: absolute; z-index: 3; left: 0; right: 0; bottom: 0;
+  padding-bottom: 40px; pointer-events: none;
+}
+.hero-copy .container { pointer-events: auto; }
+.hero-copy h1 { max-width: 15ch; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+}
+.hero-eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--gold); }
+.hero-foot {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+  margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line);
+}
+.hero-foot .lead { max-width: 46ch; margin: 0; }
+.hero-cta { margin: 0; }
+
+/* drag hint over the 3D stage */
+.dragtip {
+  position: absolute; z-index: 3; left: 50%; bottom: 112px; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--dim); display: flex; align-items: center; gap: 9px; pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.dragtip i { width: 16px; height: 1px; background: var(--dim); display: block; }
+.hero-scene.touched .dragtip { opacity: 0; }
+
+/* camera-step rail: 4 named views the scroll drives through */
+.viewrail {
+  position: absolute; z-index: 3; right: 0; top: 50%; transform: translateY(-50%);
+  display: grid; gap: 2px; padding-right: clamp(12px, 3vw, 34px);
+}
+.viewrail button {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  background: none; border: 0; border-right: 2px solid var(--line); color: var(--dim);
+  padding: 9px 12px 9px 18px; cursor: pointer; text-align: right; transition: color 0.2s, border-color 0.2s;
+}
+.viewrail button[aria-current="true"] { color: var(--gold); border-right-color: var(--gold); }
+.viewrail button:hover { color: var(--text); }
+@media (max-width: 860px) { .viewrail { display: none; } .dragtip { bottom: 92px; } }
+
+/* ---------- headline with live arc footage inside the letters ---------- */
+.weldline { position: relative; display: block; width: 100%; isolation: isolate; }
+.weldline video {
+  width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;
+  filter: saturate(1.1) contrast(1.42) brightness(1.3);
+}
+/* The letters are holes cut through to the footage, so a dark frame made whole
+   words disappear. Two guards: a wash that lifts whatever sits inside the
+   letterforms, and a hairline edge so the word reads even on a black frame. */
+.weldline .wl-wash { fill: rgba(255, 255, 255, 0.17); }
+.weldline .wl-edge {
+  fill: none; stroke: rgba(255, 255, 255, 0.96); stroke-width: 2.2;
+  stroke-linejoin: round; paint-order: stroke;
+}
+.weldline svg { display: block; width: 100%; height: auto; position: relative; z-index: 2; }
+.weldline .knock { fill: var(--ink); }
+
+/* ============================ SECTIONS ============================ */
+/* Section rhythm. Flat black from top to bottom with 150px of air above and
+   below every block read as "bland open space"; the page now alternates two
+   near-black grounds so each section reads as its own plate, and the air is
+   tightened to roughly half of what it was. */
+.block { padding: clamp(44px, 4.4vw, 78px) 0; position: relative; }
+.block:nth-of-type(even) { background: #0a0b0d; }
+.block:nth-of-type(even)::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, var(--gold) 0 86px, var(--line) 86px 100%);
+  opacity: 0.6;
+}
+.lineup-bar { margin-bottom: 0; }
+.block + .block { border-top: 1px solid var(--line); }
+.sec-head { max-width: none; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 36px; align-items: end; margin-bottom: clamp(32px, 4vw, 56px); }
+.sec-head .lead { justify-self: end; }
+@media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; gap: 16px; } .sec-head .lead { justify-self: start; } }
+
+/* stat band -> drawing data strip with odometers */
+.stats { border: 0 !important; border-top: 1px solid var(--line-2) !important; border-bottom: 1px solid var(--line-2) !important;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.stats > * { padding: 24px 26px; border-left: 1px solid var(--line); }
+.stats > *:first-child { border-left: 0; }
+.stats .num { font-size: clamp(42px, 5vw, 72px); line-height: 0.82; color: var(--text); }
+.stats .num small { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; color: var(--gold); margin-left: 7px; vertical-align: super; }
+.stats p { font-family: var(--mono); font-size: 10.5px; line-height: 1.7; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); margin-top: 12px; }
+@media (max-width: 860px) { .stats { grid-template-columns: 1fr 1fr; } .stats > *:nth-child(3) { border-left: 0; } .stats > *:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+/* ---------- LINEUP: full-bleed snap rail, live 3D on the active card ---------- */
+.lineup { position: relative; }
+.lineup-track {
+  display: flex; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
+}
+.lineup-track::-webkit-scrollbar { display: none; }
+.lineup-item {
+  flex: 0 0 min(78vw, 560px); scroll-snap-align: start; border-right: 1px solid var(--line);
+  padding: 0; position: relative; background: transparent; transition: background 0.4s ease;
+}
+.lineup-item.on { background: linear-gradient(180deg, rgba(237,193,8,0.055), transparent 70%); }
+.lineup-shot { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+.lineup-shot canvas, .lineup-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lineup-no { position: absolute; left: 16px; top: 14px; z-index: 3; font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--gold); }
+.lineup-meta { padding: 18px 22px 26px; border-top: 1px solid var(--line); }
+.lineup-meta h3 { margin-bottom: 7px; }
+.lineup-meta .kick { font-family: var(--mono); font-size: 10px; letter-spacing: 0.17em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 11px; }
+.lineup-meta p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+.lineup-dims { display: flex; gap: 0; margin-top: 16px; border-top: 1px solid var(--line); }
+.lineup-dims div { flex: 1; padding: 10px 0 0; border-left: 1px solid var(--line); padding-left: 12px; }
+.lineup-dims div:first-child { border-left: 0; padding-left: 0; }
+.lineup-dims b { display: block; font-family: var(--disp); font-size: 22px; font-weight: 800; }
+.lineup-dims span { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.lineup-go { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--gold-dim); padding-bottom: 4px; }
+.lineup-go:hover { border-bottom-color: var(--gold); }
+.lineup-bar { display: flex; align-items: center; gap: 16px; margin-top: 22px; }
+.lineup-bar .prog { flex: 1; height: 1px; background: var(--line); position: relative; }
+.lineup-bar .prog i { position: absolute; left: 0; top: -1px; height: 3px; background: var(--gold); transition: width 0.3s var(--ease), left 0.3s var(--ease); }
+.lineup-bar .rail-nav { display: flex; gap: 2px; }
+.lineup-bar button { width: 42px; height: 38px; background: none; border: 1px solid var(--line-2); color: var(--text); cursor: pointer; }
+.lineup-bar button:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ---------- CAB-TO-AXLE teaching diagram (nobody in the category does this) ---------- */
+.ca-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 44px; align-items: start; }
+@media (max-width: 1000px) { .ca-wrap { grid-template-columns: 1fr; } }
+.ca-sheet { border: 1px solid var(--line-2); background: #0a0c0e; position: relative; }
+.ca-sheet svg { display: block; width: 100%; height: auto; }
+.ca-sheet .tblock {
+  display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line-2);
+  padding: 9px 14px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
+}
+.ca-sheet .tblock b { color: var(--gold); font-weight: 700; }
+.ca-steps { counter-reset: s; display: grid; gap: 0; }
+.ca-steps li { list-style: none; counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 18px 0; border-top: 1px solid var(--line); }
+.ca-steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--gold); padding-top: 4px; }
+.ca-steps b { display: block; font-family: var(--disp); text-transform: uppercase; font-size: 19px; font-weight: 800; letter-spacing: 0.01em; margin-bottom: 5px; }
+.ca-steps span { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+
+/* ---------- SHOP bento -> contact sheet with mono captions ---------- */
+.bento figure { border-radius: 0 !important; border: 1px solid var(--line); }
+.bento figcaption { font-family: var(--mono) !important; font-size: 10px !important; letter-spacing: 0.16em; text-transform: uppercase; }
+.bento figcaption small { font-family: var(--body); letter-spacing: 0; text-transform: none; font-size: 12.5px; }
+
+/* ---------- STANDARD list -> spec schedule table ---------- */
+.std ul { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line-2); }
+.std li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start; padding: 16px 20px 16px 0; border-bottom: 1px solid var(--line); }
+.std li:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
+.std .k { font-family: var(--mono); font-size: 10.5px; color: var(--gold); letter-spacing: 0.1em; padding-top: 3px; }
+.std b { font-family: var(--disp); text-transform: uppercase; font-size: 18px; letter-spacing: 0.01em; display: block; }
+.std span { color: var(--muted); font-size: 13.5px; line-height: 1.55; }
+@media (max-width: 760px) { .std ul { grid-template-columns: 1fr; } .std li:nth-child(even) { padding-left: 0; border-left: 0; } }
+
+/* ---------- CTA band: stamped plate ---------- */
+.cta-band { border-top: 1px solid var(--gold-dim); border-bottom: 1px solid var(--gold-dim); background: linear-gradient(180deg, rgba(237,193,8,0.07), transparent); }
+
+/* ---------- footer / demo note ---------- */
+.demo-note { font-size: 10px !important; letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* ============================ CONFIGURATOR ============================ */
+.cfg-steps { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; }
+.cfg-panel { border-right: 1px solid var(--line-2); background: #0a0c0e; }
+.pills button, .colors button, .pill { border-radius: 0 !important; }
+.pills button { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* live cut sheet in the builder */
+.cutsheet { border: 1px solid var(--line-2); background: #0a0c0e; }
+.cutsheet-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line-2); background: rgba(237,193,8,0.05); }
+.cutsheet-head b { font-family: var(--disp); text-transform: uppercase; font-size: 16px; letter-spacing: 0.04em; }
+.cutsheet-head span { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; color: var(--gold); }
+.cutsheet table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 11px; }
+.cutsheet td { padding: 7px 14px; border-bottom: 1px solid var(--line); letter-spacing: 0.04em; }
+.cutsheet td:first-child { color: var(--dim); text-transform: uppercase; font-size: 10px; letter-spacing: 0.12em; width: 46%; }
+.cutsheet td:last-child { color: var(--text); text-align: right; }
+.cutsheet tr:last-child td { border-bottom: 0; }
+
+/* ============================ misc ============================ */
+.vtag, .stage-top, .stage-bottom { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+.views button { border-radius: 0 !important; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; }
+.bed-card { border: 1px solid var(--line); background: #0a0c0e; }
+.bed-card:hover { border-color: var(--gold-dim); }
+.spec-tiles > * { border: 1px solid var(--line); background: #0a0c0e; }
+.toast { border-radius: 0 !important; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; }
+
+/* odometer digits hold their width while counting */
+.odo { font-variant-numeric: tabular-nums; }
+
+/* ---------- cab-to-axle drawing: line weights read as a real drawing ---------- */
+.ca-sheet svg { background: #090b0d; }
+.ca-sheet .g-line { stroke: var(--line-2); stroke-width: 1; }
+.ca-sheet .g-cab { fill: #15191d; stroke: var(--line-3); stroke-width: 1.2; stroke-linejoin: miter; }
+.ca-sheet .g-rail { fill: #2a2f35; stroke: var(--line-2); stroke-width: 1; }
+.ca-sheet .g-bed { fill: rgba(237, 193, 8, 0.16); stroke: var(--gold); stroke-width: 1.2; }
+.ca-sheet .g-wheel { fill: #0d0f11; stroke: var(--line-3); stroke-width: 1.4; }
+.ca-sheet .g-hub { fill: #1a1e22; stroke: var(--line-2); stroke-width: 1; }
+.ca-sheet .g-ext { stroke: var(--line-2); stroke-width: 1; stroke-dasharray: 3 4; }
+.ca-sheet .g-dim { stroke: var(--gold); stroke-width: 1.1; fill: none; }
+.ca-sheet .g-dim.thin { stroke: var(--line-3); }
+.ca-sheet .g-txt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; fill: var(--muted); text-transform: uppercase; }
+.ca-sheet .g-txt.d { fill: var(--gold); }
+.ca-sheet .g-txt.l { font-size: 12.5px; fill: var(--text); letter-spacing: 0.17em; }
+#ca-readout { font-family: var(--mono); font-size: 12px; line-height: 1.8; letter-spacing: 0.06em; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; margin-top: 18px; }
+#ca-readout b { color: var(--gold); }
+
+/* ---------- hero scroll track: the hero is sticky inside a tall track ---------- */
+.hero-track { height: 230svh; position: relative; }
+/* section.hero is the sticky scene's containing block, so it has to be as tall
+   as the track - otherwise the scene unpins after one screen and the rest of
+   the track scrolls past as empty grid. site.css gives .hero 100dvh and
+   overflow:hidden; both are overridden here on purpose. */
+.hero-track > .hero { height: 100%; min-height: 0; overflow: visible; padding: 0; display: block; }
+.hero-track .hero-scene { position: sticky; top: 0; }
+@media (max-width: 860px) { .hero-track { height: 100svh; } .hero-track .hero-scene { position: relative; } }
+.hero-scene.nogl-mode .hero-stage { background: linear-gradient(140deg, #14181c, #0a0c0e); }
+
+/* step title swaps with a wipe */
+[data-step-title] { display: block; transition: clip-path 0.4s var(--ease); }
+
+/* ---------- no-WebGL fallback ---------- */
+.nogl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); padding: 14px; }
+
+/* ---------- hero composition fix: the bed owns the right, the copy owns the left ---------- */
+.hero-stage { left: 34%; }
+.hero-ann { left: 34%; }
+@media (max-width: 1100px) { .hero-stage, .hero-ann { left: 0; bottom: 42%; } }
+.hero-vignette {
+  background:
+    radial-gradient(70% 60% at 68% 38%, rgba(237,193,8,0.07) 0%, transparent 70%),
+    linear-gradient(90deg, var(--ink) 0%, rgba(7,8,10,0.86) 26%, rgba(7,8,10,0.1) 52%, transparent 70%),
+    linear-gradient(0deg, var(--ink) 0%, rgba(7,8,10,0.55) 18%, transparent 46%);
+}
+.hero-copy { padding-bottom: 34px; }
+.hero h1 { font-size: clamp(38px, 4.6vw, 72px); max-width: 13ch; }
+.hero-eyebrow { margin-bottom: 14px; }
+.hero-foot { grid-template-columns: minmax(0, 1fr) 380px; display: grid; align-items: end; gap: 34px; }
+.hero-foot .fitbox { width: 100%; }
+@media (max-width: 1100px) {
+  .hero-foot { grid-template-columns: 1fr; }
+  .hero-copy { padding-bottom: 22px; }
+  .hero h1 { font-size: clamp(34px, 8vw, 50px); }
+  .hero-foot .lead { display: none; }
+}
+.viewrail { padding-right: 22px; }
+.dragtip { left: auto; right: 30px; bottom: 26px; transform: none; }
+@media (max-width: 1100px) { .dragtip { display: none; } }
+
+/* hero copy: one grid, copy left and the fit card right, both sitting on the baseline */
+.hero-foot { margin-top: 0; padding-top: 0; border-top: 0; }
+.hero h1 { max-width: 15ch; font-size: clamp(36px, 4.1vw, 64px); }
+.hero .lead { max-width: 48ch; font-size: 16px; }
+.viewrail { padding-right: 30px; }
+@media (max-width: 1100px) { .hero h1 { font-size: clamp(32px, 7.4vw, 46px); max-width: 18ch; } .hero .lead { display: none; } }
+
+/* the demo-note bar is fixed to the bottom of the window; keep the hero clear of it */
+.hero-copy { padding-bottom: 60px; }
+.fitbox-body { padding: 14px 16px 16px; }
+.fitbox .field { margin-bottom: 9px; }
+.fitbox .fit-result { font-size: 12.5px; line-height: 1.5; padding: 9px 11px; }
+.fitbox-head { padding: 10px 16px; }
+.fitbox-head h3 { font-size: 19px; }
+@media (max-width: 1100px) { .hero-copy { padding-bottom: 54px; } }
+
+/* ==========================================================================
+   v2.1 polish pass - mechanics lifted from verified award-winning industrial
+   sites (research/04). One fluid root instead of per-element clamp, 2px max
+   radius, tracking that inverts with size, tabular figures, chamfered plate
+   corners at a FIXED notch, multiply-blend darkeners over footage.
+   ========================================================================== */
+
+/* 1. one fluid root: the whole site re-proportions from a single line.
+      (per-element clamp() is the generated-layout tell) */
+html { font-size: 14px; scrollbar-gutter: stable; overflow-x: clip; }
+/* site.css puts overflow-x: hidden on body. On body that makes the element a
+   scroll container, which silently kills every position: sticky on the page -
+   the hero scene never pinned because of this one line. html's overflow-x: clip
+   above already prevents sideways scrolling and does not create a scrollport. */
+body { overflow: visible; }
+@media (min-width: 640px)  { html { font-size: calc(0.9vw + 8px); } }
+@media (min-width: 1600px) { html { font-size: 22.4px; } }
+
+/* display scale now rides the root, not nine separate clamps */
+h1 { font-size: 3.4rem; letter-spacing: -0.022em; line-height: 0.86; }
+h2 { font-size: 2.9rem; letter-spacing: -0.018em; line-height: 0.88; }
+h3 { font-size: 1.45rem; letter-spacing: -0.004em; }
+.lead { font-size: 1.02rem; line-height: 1.42; }
+.hero h1 { font-size: 3.1rem; }
+@media (max-width: 639px) { h1, .hero h1 { font-size: 2.5rem; } h2 { font-size: 2.1rem; } }
+
+/* 2. figures never shuffle when a value changes */
+.num, .mono, .cutsheet td, .lineup-dims b, .stats .num, #ca-readout, .dimtxt, .header-phone {
+  font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; font-kerning: none;
+}
+
+/* 3. chamfered plate corners at a FIXED 34px notch (percentage polygons distort
+      at different panel sizes; --notch-w is written per element by site.js) */
+.chamfer {
+  clip-path: polygon(var(--notch-w, calc(100% - 34px)) 0, 100% 34px, 100% 100%, 0 100%, 0 0);
+}
+.chamfer.tick::after { display: none; }   /* the cut corner IS the detail */
+
+/* 4. multiply-blend darkener over footage: keeps steel contrast instead of
+      greying the whole frame the way a flat black scrim does */
+.bento figure::after, .weldline::after, .cta-band video + .inner::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply; opacity: 0.55;
+  background: linear-gradient(180deg, #010101 0%, rgba(1,1,1,0.72) 4.8%, rgba(1,1,1,0.5) 13.9%,
+    rgba(1,1,1,0.34) 27%, rgba(1,1,1,0.22) 43.5%, rgba(1,1,1,0.3) 66%, rgba(1,1,1,0.66) 81%, #010101 100%);
+}
+.bento figure { position: relative; }
+.weldline { overflow: hidden; }
+.weldline::after { mix-blend-mode: multiply; opacity: 0.3; }
+
+/* 5. header frost is a continuous value written per frame, not a class snap */
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgba(7, 8, 10, 0.92); backdrop-filter: blur(16px);
+  opacity: calc(var(--frost, 0) * 100%);
+  border-bottom: 1px solid rgba(234, 240, 246, calc(var(--frost, 0) * 0.1));
+}
+.site-header.solid { background: transparent; border-bottom: 0; backdrop-filter: none; }
+
+/* 6. motion toggle (almost nobody ships one) */
+.motion-toggle {
+  position: fixed; right: 14px; bottom: 54px; z-index: 80; display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(7,8,10,0.9); border: 1px solid var(--line-2); color: var(--dim); cursor: pointer;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 10px;
+}
+.motion-toggle i { width: 7px; height: 7px; background: var(--gold); display: block; }
+.motion-toggle[aria-checked="false"] i { background: var(--dim); }
+.motion-toggle:hover { color: var(--text); border-color: var(--gold); }
+body.no-motion .reveal { clip-path: none !important; }
+body.no-motion video { display: none; }
+
+/* keep the hero CTAs clear of the fixed demo bar, and the motion switch clear of the fit card */
+.hero-copy { padding-bottom: 76px; }
+.hero .lead { max-width: 44ch; }
+.hero .btn-lg { height: 52px; font-size: 1.05rem; }
+.motion-toggle { right: auto; left: 14px; bottom: 54px; }
+@media (max-width: 1100px) { .motion-toggle { display: none; } }
+
+/* lineup renders are framed, not cropped */
+.lineup-shot img { object-fit: contain; padding: 10px 14px; }
+.lineup-shot { background: radial-gradient(70% 60% at 50% 45%, rgba(237,193,8,0.05), transparent 70%); }
+/* the measuring steps are a list, not a stretched grid */
+.ca-steps { align-content: start; }
+.ca-steps li { align-items: start; }
+
+/* the measure-it steps: number in column 1, title and copy both in column 2 */
+.ca-steps li { grid-template-columns: 44px minmax(0, 1fr); }
+.ca-steps b, .ca-steps span { grid-column: 2; }
+
+/* ---------- builder: annotation overlay + the live cut sheet ---------- */
+.cfg-stage { position: relative; }
+.cfg-ann { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.cfg-ann svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.cfg-ann .dl { stroke: var(--gold); stroke-width: 1; fill: none; opacity: 0.9; }
+.cfg-ann .dl.thin { stroke: var(--line-3); }
+.cfg-ann text { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; fill: #fff; text-transform: uppercase; }
+.cfg-ann text.d { fill: var(--gold); }
+#cutsheet {
+  position: absolute; z-index: 3; left: 18px; bottom: 74px; width: 268px; max-height: 56%;
+  overflow: auto; background: rgba(8, 10, 12, 0.94); backdrop-filter: blur(6px);
+}
+#cutsheet .btn { margin: 8px; width: calc(100% - 16px) !important; }
+@media (max-width: 1000px) { #cutsheet { display: none; } }
+
+/* print the cut sheet on its own, as a sheet */
+@media print {
+  body { background: #fff !important; color: #000; }
+  body::before, body::after, .site-header, .mobile-nav, .cfg-panel, .stage-top, .stage-bottom,
+  .demo-note, .motion-toggle, .cfg-ann, footer { display: none !important; }
+  .cfg-stage { height: auto !important; position: static !important; }
+  .cfg-stage canvas { max-height: 46vh; }
+  #cutsheet { position: static !important; width: 100% !important; max-height: none !important;
+    background: #fff !important; color: #000; border: 1px solid #000; clip-path: none !important; }
+  #cutsheet td { color: #000 !important; border-color: #999 !important; }
+  #cutsheet .btn { display: none !important; }
+}
+
+/* cut sheet sizing: wide enough that the title block does not wrap, and clear
+   of the motion switch in the corner */
+#cutsheet { width: 310px; bottom: 100px; }
+.cutsheet-head b { font-size: 14px; letter-spacing: 0.08em; }
+.cutsheet-head span { font-size: 8.5px; letter-spacing: 0.1em; white-space: nowrap; }
+.cutsheet td { padding: 6px 12px; font-size: 10.5px; }
+.cutsheet td:first-child { font-size: 9px; width: 50%; }
+
+/* detail page: give the drawing room and tighten the top gap */
+.detail-hero .viewer { position: relative; }
+.page-head, .crumbs { padding-top: 12px; }
+
+/* the knocked-out headline should read as arc light, not as a grey wash */
+.weldline::after { opacity: 0.18; }
+.weldline video { filter: saturate(1.2) contrast(1.45) brightness(1.15); }
+/* bento captions need a plate behind them on bright frames */
+/* position stays absolute - site.css pins this caption to the bottom of its
+   figure. Setting it relative here pushed every caption 62px below the figure,
+   where overflow:hidden clipped it, and the whole shop grid lost its labels. */
+.bento figcaption { z-index: 2; text-shadow: 0 1px 10px rgba(0,0,0,0.9); }
+
+/* ---------- phone hero: the bed sits above the copy, never behind it ---------- */
+@media (max-width: 1100px) {
+  .hero-stage, .hero-ann { inset: var(--nav-h) 0 58% 0; }
+  .hero-vignette {
+    background:
+      linear-gradient(0deg, var(--ink) 0%, var(--ink) 42%, rgba(7,8,10,0.35) 55%, transparent 78%),
+      radial-gradient(80% 50% at 50% 24%, rgba(237,193,8,0.07), transparent 70%);
+  }
+  .hero-copy { padding-bottom: 50px; }
+  .hero-eyebrow { font-size: 9.5px; letter-spacing: 0.16em; }
+  .hero-cta { gap: 8px; }
+  .hero .btn-lg { height: 46px; font-size: 1rem; flex: 1; }
+  .fitbox-body { padding: 12px 14px 14px; }
+}
+@media (max-width: 420px) {
+  .hero-stage, .hero-ann { inset: var(--nav-h) 0 62% 0; }
+  .hero h1 { font-size: 2.1rem; }
+}
+@media (max-width: 760px) { .hero-eyebrow { display: none; } }
+@media (max-width: 760px) {
+  .hero-stage, .hero-ann { inset: var(--nav-h) 0 64% 0; }
+  .hero-vignette { background:
+    linear-gradient(0deg, var(--ink) 0%, var(--ink) 37%, rgba(7,8,10,0.4) 50%, transparent 76%),
+    radial-gradient(80% 44% at 50% 20%, rgba(237,193,8,0.07), transparent 70%); }
+}
+/* the motion switch is a utility, not a feature: quiet until you look for it */
+.motion-toggle { opacity: 0.5; transition: opacity 0.2s ease, color 0.2s, border-color 0.2s; }
+.motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; }
+/* the 3D stage must never paint outside its box (the phone layout stacks under it) */
+.hero-stage { overflow: hidden; }
+
+/* ---------- phone hero, deterministic: two real rows, no percentage insets ----------
+   (percentage insets measured against an svh-sized parent gave a stage 76px taller
+   than intended, which put the headline on top of the bed) */
+@media (max-width: 1100px) {
+  .hero-scene { display: grid; grid-template-rows: minmax(0, 40svh) minmax(0, 1fr); height: 100svh; }
+  .hero-stage, .hero-ann { position: relative; inset: auto; grid-row: 1; width: 100%; height: 100%; }
+  .hero-ann { margin-top: calc(-40svh); pointer-events: none; }
+  .hero-copy { position: relative; inset: auto; grid-row: 2; align-self: end; padding-bottom: 50px; }
+  .hero-vignette { background:
+    linear-gradient(0deg, var(--ink) 0%, var(--ink) 58%, rgba(7,8,10,0.45) 64%, transparent 82%),
+    radial-gradient(80% 36% at 50% 18%, rgba(237,193,8,0.08), transparent 70%); }
+}
+
+/* the phone hero is taller than one screen and that is fine: the bed gets a real
+   40svh of stage, the copy and the fit card take what they need underneath */
+@media (max-width: 1100px) {
+  .hero-track, .hero-scene, .hero { height: auto; min-height: 0; }
+  .hero-scene { grid-template-rows: 40svh auto; }
+  .hero-copy { padding-top: 22px; padding-bottom: 26px; }
+  .hero-cta a:nth-child(2) { display: none; }   /* the fit card right below IS that button */
+  .hero-cta .btn-lg { flex: 1 1 100%; }
+}
+@media (max-width: 1100px) {
+  /* stage and annotation share one grid cell so the dimensions sit ON the bed */
+  .hero-stage, .hero-ann { grid-row: 1; grid-column: 1; margin: 0; }
+}
+
+/* ==========================================================================
+   v2.2 - defects found by the independent verifier run, 10/19/26
+   ========================================================================== */
+
+/* 1. THE REAL ONE: the fit card sat on top of the view rail, so Side / Rear /
+      Plan could not be clicked with a mouse. The rail moves to the top of the
+      stage, clear of the card, and reads as a horizontal row of tabs. */
+.viewrail {
+  top: calc(var(--nav-h) + 20px); bottom: auto; right: 0; transform: none;
+  display: flex; gap: 0; padding-right: clamp(14px, 3vw, 34px); z-index: 6;
+}
+.viewrail button {
+  border-right: 0; border-bottom: 2px solid var(--line); text-align: center;
+  padding: 8px 14px; background: rgba(7, 8, 10, 0.55); backdrop-filter: blur(4px);
+}
+.viewrail button[aria-current="true"] { border-bottom-color: var(--gold); border-right-color: transparent; }
+@media (max-width: 1100px) { .viewrail { display: none; } }
+
+/* 2. the hero paragraph was running into the CTA row and the motion chip */
+.hero .lead { max-width: 40ch; margin-top: 14px; }
+.hero-cta { margin-top: 16px !important; }
+/* the motion chip only appears once the hero is behind you */
+.motion-toggle { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+body.past-hero .motion-toggle { opacity: 0.5; pointer-events: auto; }
+body.past-hero .motion-toggle:hover, body.past-hero .motion-toggle:focus-visible { opacity: 1; }
+
+/* 3. the builder cut sheet was covering the left half of the bed */
+#cutsheet { width: 282px; left: 16px; bottom: 90px; }
+
+/* 4. figures: the tabular rule was not reaching the spec tables */
+.spec-tiles, .summary-list, .dims, .sum, .fits, .compare, .lineup-dims, .fit-result,
+.std, .cutsheet, table, .stats {
+  font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;
+}
+
+/* 5. the knocked-out headline was hard to read on a phone: darken the fill */
+@media (max-width: 760px) {
+  .weldline::after { opacity: 0.45; }
+  .weldline video { filter: saturate(1.1) contrast(1.6) brightness(0.9); }
+}
+
+/* the v1 hero carried a nav-height top padding; with the sticky 3D scene that
+   pushed the whole scene 76px below the fold and put the CTAs on the edge */
+.hero-track .hero { padding: 0 !important; min-height: 0; }
+.hero-track .hero-scene { height: 100svh; top: 0; }
+
+/* ==========================================================================
+   v2.3 - PHONE PASS, 10/19/26
+   Drew, reading it on a phone after reading it on a laptop:
+     "a lot of tightness where things are overlaying on each other",
+     "maybe we can do a little bit more with outlines to make things bold
+      and stand out", "the scroll feature where it's kind of like a double
+      scroll when you're looking at something".
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. THE OVERLAP. MEASURED, NOT GUESSED.
+      `.hero-track .hero-scene { height: 100svh }` (v2.2, written for the
+      desktop sticky pin) applied at EVERY width. On a 390x844 phone the
+      scene is a two-row grid - 40svh of bed, then the copy and the fit card -
+      which needs 977px of content inside an 844px box. The overflow ran the
+      fit card 67px down into the stats block, so the yellow BUILD YOURS
+      button landed on top of the "5" and the "7". That is the exact thing
+      Drew is looking at. Phone gets its natural height back; desktop keeps
+      the fixed height because the sticky pin needs a measurable track.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .hero-track, .hero-track .hero-scene, .hero-track .hero { height: auto; min-height: 0; }
+  .hero-track .hero-scene { top: auto; }
+  /* the bed was starting at y=0, i.e. its top 76px sat under the fixed header */
+  .hero-scene { padding-top: var(--nav-h); }
+  /* and give the stack real air between the copy, the card and what follows */
+  .hero-copy { padding-top: 26px; padding-bottom: 38px; }
+  .fitbox { margin-bottom: 8px; }
+}
+
+/* --------------------------------------------------------------------------
+   2. OUTLINES. Drew's ask, and it is the right call for this page: on a phone
+      everything was type floating on one flat black field, so nothing read as
+      an object. Each block becomes a PLATE - a drawn edge, a slightly lifted
+      ground, and a gold corner tick in the top-left like a drawing callout.
+      Kept to <=900px so the desktop layout, which has room to breathe, is
+      untouched.
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .plate, .stats, .std, .steps, .faq, .acc, .bed-card, .compare, .ca-wrap, .fit-result {
+    position: relative;
+  }
+  /* the plate treatment itself */
+  .stats, .std, .faq, .compare, .acc, .bed-card, .fit-result, .spec-tiles > *, .ca-fig {
+    background: #0c0d0f;
+    border: 1px solid var(--line);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
+  }
+  .stats, .std, .faq, .compare, .ca-fig { padding: 14px 14px 4px; }
+  .acc, .bed-card, .fit-result { padding: 14px; }
+  /* the gold corner tick - two 14px strokes, the drawing-sheet corner */
+  .stats::before, .std::before, .faq::before, .compare::before, .acc::before, .ca-fig::before {
+    content: ""; position: absolute; top: -1px; left: -1px; width: 14px; height: 14px;
+    border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); pointer-events: none;
+  }
+  /* numbers inside the stats plate get an outlined box each, not bare type */
+  .stats > div { border-color: var(--line) !important; padding: 16px 14px; }
+  /* steps: each one is its own plate with a ruled number gutter */
+  .steps > * {
+    border: 1px solid var(--line); background: #0c0d0f; padding: 16px 16px 18px;
+  }
+  .steps { gap: 12px; }
+  /* section headers get a rule above so each section reads as a new sheet */
+  .sec-head { border-top: 1px solid var(--line); padding-top: 18px; }
+}
+
+/* --------------------------------------------------------------------------
+   3. THE DOUBLE SCROLL. Two pinned scenes make a phone feel like it is
+      scrolling two things at once: the home hero (fixed by #1 above - the
+      phone hero no longer pins at all) and the builder, where .cfg-stage is
+      sticky so the 3D holds still while the controls move underneath it.
+      On a desktop that is the point. On a 390px screen the stage eats 60%
+      of the glass and the controls crawl through the remaining 40%, which
+      is exactly the "double scroll" feeling. Phone gets ONE scroll: the bed
+      sits at a fixed 46svh at the top of the page, the controls scroll the
+      page normally underneath it.
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .cfg-stage {
+    position: sticky; top: var(--nav-h); height: 46svh; min-height: 260px;
+    border-bottom: 1px solid var(--line); background: var(--ink); z-index: 3;
+  }
+  .cfg-panel { padding-top: 18px; }
+  /* The two floating cards were boxes dropped onto the corners of a 390px
+     stage, so the mono type wrapped one word per line and both of them
+     landed on the bed. On a phone they become full-width bars pinned to the
+     top and bottom edge of the stage - a header and a footer for the view,
+     not objects floating over it. */
+  .stage-top, .stage-bottom {
+    position: absolute; left: 0; right: 0; max-width: none; border-radius: 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 7px 12px; background: rgba(7,8,10,0.78); backdrop-filter: blur(5px);
+  }
+  .stage-top { top: 0; border-bottom: 1px solid var(--line); }
+  .stage-bottom { bottom: 0; top: auto; border-top: 1px solid var(--line); flex-wrap: nowrap; }
+  .stage-top .title { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+  .stage-top h2 { font-size: 15px; margin: 0; white-space: nowrap; }
+  .stage-top #stage-sub { display: none; }          /* the step panel below says it better */
+  .stage-bottom .views { display: flex; gap: 0; flex: 0 0 auto; }
+  .stage-bottom .views button { padding: 5px 9px; font-size: 10px; }
+  .stage-bottom .dims {
+    font-size: 10px; letter-spacing: 0.06em; text-align: right; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .colors, .swatches { display: flex; gap: 5px; flex: 0 0 auto; }
+  .colors button, .swatches button { width: 24px; height: 24px; }
+}
+
+/* --------------------------------------------------------------------------
+   4. MONO BODY COPY. The technical typeface is right for numbers and labels
+      and wrong for sentences on a 390px screen: 0.15em of tracking turns a
+      two-line sentence into four. Tighten it below 760px. Labels and data
+      keep their tracking, which is where it earns its keep.
+   -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  p.mono, .hint, .fine, .lead.mono, .ca-note {
+    letter-spacing: 0.04em; font-size: 13px; line-height: 1.6;
+  }
+  .demo-note { letter-spacing: 0.04em; font-size: 10.5px; }
+}
+
+/* 5. phone rhythm: with every block now drawn as a plate, the 44px of block
+      padding on top of the plate padding opened a gap you could park in.
+      The plate edge already separates the sections, so the air comes down. */
+@media (max-width: 900px) {
+  .block { padding-top: 34px; padding-bottom: 34px; }
+  .sec-head { margin-bottom: 18px; }
+}
+
+/* 6. the phone hero stage: 40svh left the bed small with dead air under it */
+@media (max-width: 1100px) {
+  .hero-scene { grid-template-rows: 46svh auto; }
+  .hero-ann { margin-top: calc(-46svh); }
+}
+@media (max-width: 1100px) {
+  .hero-stage, .hero-ann { grid-row: 1; grid-column: 1; margin: 0; }
+}

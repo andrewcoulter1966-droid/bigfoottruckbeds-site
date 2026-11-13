@@ -25,11 +25,14 @@
 }
 .v4-arc i + i { top: 47%; width: 66vw; border-color: rgba(238, 242, 245, .16); }
 
-/* the headline sits behind the bed */
+/* the headline sits behind the bed. It stops short of the card's column (16.5rem card + air) and its
+   size is capped so "YOUR TRUCK." (about 4.2em wide) fits in what is left: on any screen shorter than
+   about 900px the card rises into the headline's rows, so the two must never share a column. */
 .v4 .v4-h1 {
-  position: absolute; z-index: 1; left: var(--v4-rail); right: 0; top: calc(var(--nav-h) + 1.2vh); margin: 0;
+  position: absolute; z-index: 1; left: var(--v4-rail); right: calc(var(--v3-gut) + 18rem); top: calc(var(--nav-h) + 1.2vh); margin: 0;
   text-align: center; font-family: var(--disp); font-weight: 800; text-transform: uppercase;
-  font-size: min(13.8vw, 25svh); line-height: .8; letter-spacing: -0.035em; pointer-events: none; will-change: transform, opacity;
+  font-size: min(13.8vw, 25svh, calc((100vw - var(--v4-rail) - var(--v3-gut) - 18rem) / 4.3));
+  line-height: .8; letter-spacing: -0.035em; pointer-events: none; will-change: transform, opacity;
 }
 .v4-h1 span { display: block; white-space: nowrap; }
 .v4-h1 .a { color: transparent; -webkit-text-stroke: 1.5px rgba(238, 242, 245, .5); }
@@ -187,7 +190,7 @@ html.v4-live .v4-beats p { font-size: 1.08rem; color: #c9d0d6; max-width: 34ch; 
     linear-gradient(#0a0c0f, #060709 72%); }
   .v4-arc i { top: 30%; width: 150vw; }
   .v4-arc i + i { top: 36%; width: 104vw; }
-  .v4 .v4-h1 { font-size: 20.5vw; top: calc(var(--nav-h) + 14px); }
+  .v4 .v4-h1 { right: 0; font-size: 20.5vw; top: calc(var(--nav-h) + 14px); }
   .v4-h1 .a { -webkit-text-stroke-width: 1px; }
   .v4-fallback { top: 46%; width: 112vw; max-width: none; }
   .v4-media, .v4-hint, .v4-for, .v4-specs { display: none; }

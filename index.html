@@ -3,254 +3,492 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bigfoot Truck Beds. Steel flatbeds built in Mulberry, Florida.</title>
-<meta name="description" content="Steel flatbeds, skirted beds, hotshot beds, bale beds and service bodies for Ford, Chevy, GMC and Ram. Pick your truck and see the bed that fits. Built in Mulberry, Florida." />
+<!-- Security policy (11/23/26). GitHub Pages cannot send security headers, so the policy lives here.
+     Scripts: this site's own files, nothing inline. Styles: this page + Google Fonts. Form posts and visit counts: the portal only.
+     The Meta Pixel and Google Analytics hosts are already allowed here so that turning either on is one value in
+     assets/simple/config.js. While that value is empty nothing is loaded from them (the build and check_publish.py prove it).
+     If you add any other script, font or form host, add it here or the browser will refuse it. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://*.g.doubleclick.net; connect-src 'self' https://portal.bigfoottruckbeds.com https://www.facebook.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://www.google.com https://*.g.doubleclick.net; manifest-src 'self'; base-uri 'none'; form-action 'self'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>Bigfoot Truck Beds | Steel truck beds built in Mulberry, Florida</title>
+<meta name="description" content="Steel truck beds built in Mulberry, Florida, from the people behind Bigfoot Trailers: the light-duty Tracker Series and heavier-duty Legend Series. Get a quote." />
 <link rel="canonical" href="https://bigfoottruckbeds.com/" />
-<!-- link preview when the address is texted or posted -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Bigfoot Truck Beds" />
 <meta property="og:url" content="https://bigfoottruckbeds.com/" />
-<meta property="og:title" content="Bigfoot Truck Beds. Built for your truck." />
-<meta property="og:description" content="Steel flatbeds, skirted beds, hotshot beds, bale beds and service bodies for Ford, Chevy, GMC and Ram. Built in Mulberry, Florida." />
-<meta property="og:image" content="https://bigfoottruckbeds.com/assets/img/share-card.jpg" />
+<meta property="og:title" content="Bigfoot Truck Beds, built in Mulberry, Florida" />
+<meta property="og:description" content="Bigfoot builds truck beds now: the light-duty Tracker Series and the heavier-duty Legend Series, with options on both, built in Mulberry, Florida. Tell us your truck and get a quote." />
+<meta property="og:image" content="https://bigfoottruckbeds.com/assets/simple/share-bed.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The first Bigfoot Tracker Series truck bed build, Mulberry, Florida" />
+<meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bigfoot Truck Beds, built in Mulberry, Florida" />
+<meta name="twitter:description" content="Bigfoot builds truck beds now: the light-duty Tracker Series and the heavier-duty Legend Series, with options on both, built in Mulberry, Florida. Tell us your truck and get a quote." />
+<meta name="twitter:image" content="https://bigfoottruckbeds.com/assets/simple/share-bed.jpg" />
+<meta name="theme-color" content="#0b0c0d" />
+<link rel="icon" href="favicon.ico" sizes="48x48" />
 <link rel="icon" type="image/svg+xml" href="assets/img/mark.svg" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<link rel="preload" as="image" href="assets/simple/hero-bed.jpg" media="(min-width:641px)" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/simple/hero-bed-phone.jpg" media="(max-width:640px)" fetchpriority="high" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600;700&family=Azeret+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/site.css" />
-<link rel="stylesheet" href="assets/css/shop.css" />
-<link rel="stylesheet" href="assets/v3/v3.css" />
-<link rel="stylesheet" href="assets/v4/v4.css" />
-<script>
-/* Decide the hero layout before first paint so nothing jumps: pinned scroll story only with WebGL and motion allowed. */
-(function () {
-  var h = document.documentElement; h.classList.add('v3-js', 'v4-js');
-  setTimeout(function () { h.classList.add('v4-ready'); }, 1800);
-  try {
-    var c = document.createElement('canvas'), gl = c.getContext('webgl2') || c.getContext('webgl');
-    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || localStorage.getItem('bf_motion') === '0';
-    if (gl) { h.classList.add('v4-gl'); if (!still) h.classList.add('v4-live'); }
-  } catch (e) {}
-})();
-</script>
-<script type="importmap">{"imports":{"three":"./assets/vendor/three/three.module.js","three/addons/controls/OrbitControls.js":"./assets/vendor/three/OrbitControls.js","three/addons/environments/RoomEnvironment.js":"./assets/vendor/three/RoomEnvironment.js"}}</script>
-
-<!-- Search basics: only facts that already appear on the site or in the setup plan.
-     No street address, hours, prices, offers, reviews or warranty: none are known yet. -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+<!-- Name, address, phone and hours match the Google listing (checked 11/23/26). No prices (Drew's rule). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
+  "@type": "LocalBusiness",
+  "@id": "https://bigfoottruckbeds.com/#business",
+  "name": "Bigfoot Truck Beds",
+  "url": "https://bigfoottruckbeds.com/",
+  "description": "Steel truck beds built in Mulberry, Florida, from the people behind Bigfoot Trailers: the light-duty Tracker Series and the heavier-duty Legend Series, for Ford, Chevy, GMC and Ram trucks.",
+  "logo": "https://bigfoottruckbeds.com/assets/simple/icon-512.png",
+  "image": "https://bigfoottruckbeds.com/assets/simple/share-bed.jpg",
+  "telephone": "+1-813-295-1151",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "4320 State Road 60 W",
+    "addressLocality": "Mulberry",
+    "addressRegion": "FL",
+    "postalCode": "33860",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
     {
-      "@type": "Organization",
-      "@id": "https://bigfoottruckbeds.com/#organization",
-      "name": "Bigfoot Truck Beds",
-      "url": "https://bigfoottruckbeds.com/",
-      "logo": "https://bigfoottruckbeds.com/assets/img/logo.svg",
-      "telephone": "+1-863-589-7616",
-      "address": { "@type": "PostalAddress", "addressLocality": "Mulberry", "addressRegion": "FL", "addressCountry": "US" }
-    },
-    {
-      "@type": "ItemList",
-      "@id": "https://bigfoottruckbeds.com/#lineup",
-      "name": "Bigfoot Truck Beds lineup",
-      "numberOfItems": 5,
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": "Track open flatbed", "category": "Open flatbed", "description": "The straight flatbed. Open sides, full stake pockets, rub rail all the way around. The bed you buy when you want the deck and your own boxes.", "url": "https://bigfoottruckbeds.com/bed.html?s=track", "image": "https://bigfoottruckbeds.com/assets/img/beds/track.webp", "material": "Steel", "brand": { "@type": "Brand", "name": "Bigfoot Truck Beds" }, "manufacturer": { "@id": "https://bigfoottruckbeds.com/#organization" } } },
-        { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": "Ridge skirted flatbed", "category": "Skirted flatbed", "description": "Skirted sides with built-in toolboxes behind the cab and over the wheels. The bed most people picture when they say truck bed.", "url": "https://bigfoottruckbeds.com/bed.html?s=ridge", "image": "https://bigfoottruckbeds.com/assets/img/beds/ridge.webp", "material": "Steel", "brand": { "@type": "Brand", "name": "Bigfoot Truck Beds" }, "manufacturer": { "@id": "https://bigfoottruckbeds.com/#organization" } } },
-        { "@type": "ListItem", "position": 3, "item": { "@type": "Product", "name": "Hauler hotshot bed", "category": "Hotshot bed", "description": "The bed that earns its keep behind a gooseneck. Heavy ball plate over the axle, rated receiver, boxes where the chains live, and a low deck so the neck clears.", "url": "https://bigfoottruckbeds.com/bed.html?s=hauler", "image": "https://bigfoottruckbeds.com/assets/img/beds/hauler.webp", "material": "Steel", "brand": { "@type": "Brand", "name": "Bigfoot Truck Beds" }, "manufacturer": { "@id": "https://bigfoottruckbeds.com/#organization" } } },
-        { "@type": "ListItem", "position": 4, "item": { "@type": "Product", "name": "Range bale bed", "category": "Bale / arm bed", "description": "A flatbed with hydraulic arms and spikes on the back. Load and unroll round bales without leaving the seat. Runs as a plain flatbed when the arms are up.", "url": "https://bigfoottruckbeds.com/bed.html?s=range", "image": "https://bigfoottruckbeds.com/assets/img/beds/range.webp", "material": "Steel", "brand": { "@type": "Brand", "name": "Bigfoot Truck Beds" }, "manufacturer": { "@id": "https://bigfoottruckbeds.com/#organization" } } },
-        { "@type": "ListItem", "position": 5, "item": { "@type": "Product", "name": "Crew service body", "category": "Service body", "description": "Full-height side compartments both sides, open center deck, headache rack ready for a ladder rack. The field-service truck.", "url": "https://bigfoottruckbeds.com/bed.html?s=crew", "image": "https://bigfoottruckbeds.com/assets/img/beds/crew.webp", "material": "Steel", "brand": { "@type": "Brand", "name": "Bigfoot Truck Beds" }, "manufacturer": { "@id": "https://bigfoottruckbeds.com/#organization" } } }
-      ]
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "15:00"
     }
-  ]
+  ],
+  "sameAs": [
+    "https://www.facebook.com/bigfoottruckbeds"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Steel truck beds",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Bigfoot Tracker Series truck bed",
+          "brand": {
+            "@type": "Brand",
+            "name": "Bigfoot Truck Beds"
+          },
+          "description": "Light-duty steel truck bed series, with options. Ask for a quote.",
+          "image": "https://bigfoottruckbeds.com/assets/simple/legend/compare-tracker.jpg"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Bigfoot Legend Series truck bed",
+          "brand": {
+            "@type": "Brand",
+            "name": "Bigfoot Truck Beds"
+          },
+          "description": "Heavier-duty steel truck bed series, with options. Ask for a quote.",
+          "image": "https://bigfoottruckbeds.com/assets/simple/legend/compare-legend.jpg"
+        }
+      }
+    ]
+  }
 }
 </script>
+<style>
+:root{
+  --ink:#0b0c0d; --ink2:#16181b; --paper:#f6f4ee; --white:#fff; --line:#dcd8cd; --mute:#5d5a53; --gold:#edc108; --gold-d:#c9a300;
+  --wrap:1120px; --gut:20px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 Barlow,system-ui,-apple-system,"Segoe UI",sans-serif}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:"Barlow Condensed",Barlow,sans-serif;font-weight:800;line-height:1.02;margin:0;text-transform:uppercase;letter-spacing:.005em}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:4px;font:700 18px/1 "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-d)}
+.btn-line{border-color:currentColor;color:inherit;background:transparent}
+.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* header */
+.top{position:sticky;top:0;z-index:10;background:var(--ink);color:var(--white);border-bottom:3px solid var(--gold)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.top .logo{display:flex;align-items:center;min-height:44px}
+.top .logo img{height:26px;width:auto}
+.top .acts{display:flex;align-items:center;gap:14px}
+.top .tel{display:inline-flex;align-items:center;min-height:44px;color:var(--white);text-decoration:none;font-weight:600;white-space:nowrap}
+.top .tel .tel-word{display:none}
+.top .btn{min-height:44px;padding:0 16px;font-size:16px}
+
+/* hero */
+/* 11/23/26: the hero never grows taller than the window, so the two buttons stay on screen on a normal laptop
+   (1366x768 leaves about 650px). Same 782px height as before on tall windows. */
+.hero{position:relative;display:flex;align-items:center;padding:0;min-height:min(782px,calc(100vh - 71px));background:var(--ink) url(assets/simple/hero-bed.jpg) right center/auto 100% no-repeat;color:var(--white)}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,12,13,.92) 0%,rgba(11,12,13,.7) 34%,rgba(11,12,13,0) 62%)}
+.hero .wrap{position:relative;width:100%;padding-top:44px;padding-bottom:44px}
+.hero h1{font-size:clamp(44px,6.4vw,84px);max-width:11ch}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:20px;max-width:34ch;margin:18px 0 28px;color:#e9e6dd}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn-line{color:var(--white)}
+
+/* sections */
+section{padding:72px 0}
+.kick{font:700 15px/1 "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+h2{font-size:clamp(34px,4.4vw,52px)}
+.lead{font-size:19px;color:var(--mute);max-width:56ch;margin:14px 0 0}
+
+.what ul{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.what li{background:var(--white);border:1px solid var(--line);border-top:4px solid var(--gold);padding:20px 20px 22px}
+.what li b{display:block;font:800 22px/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;margin-bottom:6px}
+.what li span{color:var(--mute)}
+/* 11/23/26: the two lines. 11/24/26: the Legend Series has real photos now (its own section below), so both cards carry the same weight.
+   11/25/26: Tracker Series = light duty, Legend Series = heavier duty, options on both; specs not public yet. */
+.series{display:grid;gap:14px;margin-top:30px;grid-template-columns:1fr 1fr}
+.series article{background:var(--ink);color:var(--white);padding:24px 24px 22px;border-top:4px solid var(--gold);display:flex;flex-direction:column}
+.series article.soon{background:var(--white);color:var(--ink);border:1px solid var(--line);border-top:4px solid var(--ink)}
+.series .tag{font:700 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.series .soon .tag{color:var(--mute)}
+.series h3{font-size:clamp(30px,3.4vw,40px)}
+.series p{margin:10px 0 0;color:#d9d5ca}
+.series .soon p{color:var(--mute)}
+.series a{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;color:var(--gold);font-weight:600;text-decoration:none}
+.series a:hover{text-decoration:underline}
+
+.bed{background:var(--ink);color:var(--white)}
+.bed .lead{color:#c9c5ba}
+/* 11/23/26: the bed photos are tall (3 by 4). They used to be cropped into small wide boxes, which cut the subject out.
+   Now each tile keeps the photo's own shape, four across on a desktop and two across on a phone. */
+.bed .grid{display:grid;gap:12px;margin-top:28px;grid-template-columns:repeat(4,1fr)}
+.bed figure{margin:0}
+.bed .ph{aspect-ratio:3/4;overflow:hidden;background:#16181b}
+.bed img{width:100%;height:100%;object-fit:cover}
+.bed figcaption{font-size:15px;line-height:1.35;color:#c9c5ba;padding-top:8px}
+
+/* 11/24/26 v2: the Legend Series (real photos, plates blurred). One big photo and five around it. */
+.legend{background:var(--white);border-bottom:1px solid var(--line)}
+.legend .lg-head{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end}
+.legend .lg-head .lead{margin:0}
+.legend .grid{display:grid;gap:10px;margin-top:30px;grid-template-columns:repeat(3,1fr)}
+.legend figure{margin:0;position:relative;overflow:hidden;background:#16181b}
+.legend figure.big{grid-column:span 2;grid-row:span 2}
+.legend .grid.g3{max-width:960px}
+.legend .ph{aspect-ratio:3/2;height:100%}
+.legend img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.legend figure:hover img{transform:scale(1.03)}
+.legend figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 11px;background:linear-gradient(0deg,rgba(11,12,13,.88),rgba(11,12,13,0));color:#fff;font:700 15px/1.2 "Barlow Condensed",sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.legend figcaption b{color:var(--gold);margin-right:8px;letter-spacing:.14em}
+/* 11/24/26 v2: Tracker or Legend, side by side (replaces the Bigfoot Trailers crew section). 11/25: in-development framing */
+.vs{background:var(--ink);color:var(--white);position:relative;overflow:hidden}
+.vs::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(237,193,8,.07) 0%,rgba(237,193,8,0) 42%);pointer-events:none}
+.vs .wrap{position:relative}
+.vs .kick{color:var(--gold)}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.vs article{background:var(--ink2);border:1px solid #2b2f34;display:flex;flex-direction:column}
+.vs article.legend-card{border-color:var(--gold)}
+.vs .ph{position:relative;aspect-ratio:4/3;overflow:hidden}
+.vs .ph img{width:100%;height:100%;object-fit:cover}
+.vs .badge{position:absolute;left:0;bottom:0;background:var(--gold);color:var(--ink);font:800 clamp(22px,2.4vw,30px)/1 "Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.02em;padding:12px 34px 12px 18px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.vs .body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.vs .tag{font:700 14px/1 "Barlow Condensed",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+.vs .line{font:800 clamp(24px,2.6vw,32px)/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase;margin:0 0 16px}
+.vs .has{font-size:14px;color:#a7a397;margin:0 0 6px;text-transform:uppercase;letter-spacing:.08em}
+.vs ul{list-style:none;padding:0;margin:0 0 22px;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+.vs li{position:relative;padding-left:18px;color:#e9e6dd}
+.vs li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+.vs .btn{margin-top:auto;align-self:flex-start}
+.vs .btn-line{color:var(--white)}
+.vs-note{margin:22px 0 0;color:#c9c5ba}
+.shop .grid{display:grid;gap:14px;margin-top:28px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.shop figure{margin:0;background:var(--white);border:1px solid var(--line)}
+.shop img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.shop figcaption{padding:12px 14px 14px}
+.shop figcaption b{display:block;font:800 20px/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase}
+.shop figcaption span{color:var(--mute);font-size:15px}
+
+.who{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.who .cols{display:grid;gap:36px;align-items:center;grid-template-columns:1fr 1fr}
+.who img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.who-ph{margin:0}
+.who-ph figcaption{font-size:14px;color:var(--mute);padding-top:6px}
+.who p{font-size:19px;margin:14px 0 0;max-width:46ch}
+
+/* quote */
+.quote{background:var(--ink);color:var(--white)}
+.quote .cols{display:grid;gap:40px;grid-template-columns:1fr 1.25fr;align-items:start}
+.quote .lead{color:#c9c5ba}
+.quote .call{margin-top:22px;font-size:18px}
+.quote .call a{display:inline-block;padding:10px 0;color:var(--gold);font-weight:600}
+form{background:var(--ink2);border:1px solid #2b2f34;padding:24px}
+.fgrid{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+.f{display:flex;flex-direction:column;gap:6px}
+.f.wide{grid-column:1/-1}
+.f label{font-weight:600;font-size:15px}
+.f input,.f select,.f textarea{width:100%;font:16px Barlow,sans-serif;color:var(--ink);background:var(--white);border:1px solid #c4bfb2;border-radius:4px;padding:12px}
+.f textarea{min-height:110px;resize:vertical}
+.f .err{display:none;color:#ffb4a8;font-size:14px}
+.f.invalid input{border-color:#e0533d}
+.f.invalid .err{display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.go{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px}
+.fine{color:#a7a397;font-size:14px;margin:0}
+#qf-err{color:#ffb4a8;margin:14px 0 0}
+.done{background:var(--ink2);border:1px solid #2b2f34;border-left:4px solid var(--gold);padding:28px}
+.done h3{font-size:34px;margin:6px 0 10px}
+.done p{margin:0 0 8px;color:#dcd8cd}
+.done a{color:var(--gold)}
+
+/* contact + footer */
+.contact .cols{display:grid;gap:14px;margin-top:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.contact .card{background:var(--white);border:1px solid var(--line);padding:20px}
+.contact .card b{display:block;font:800 18px/1 "Barlow Condensed",sans-serif;text-transform:uppercase;color:var(--mute);margin-bottom:8px;letter-spacing:.06em}
+.contact .card a,.contact .card span{font-size:20px;font-weight:600;text-decoration:none}
+.contact .card a{display:block;padding:7px 0;margin:-7px 0}
+.contact .card a:hover{text-decoration:underline}
+.done a{display:inline-block;padding:10px 0}
+footer{background:var(--ink);color:#a7a397;padding:34px 0;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer img{height:22px;width:auto}
+footer a{display:inline-block;padding:13px 0;color:#a7a397}
+
+@media (min-width:641px) and (max-width:1100px){
+  /* tablets and small windows: the headline sits over the bed here, so the dark side of the photo reaches further */
+  .hero::before{background:linear-gradient(90deg,rgba(11,12,13,.93) 0%,rgba(11,12,13,.74) 44%,rgba(11,12,13,.16) 78%,rgba(11,12,13,0) 100%)}
+}
+@media (max-width:860px){
+  .series{grid-template-columns:1fr}
+  .bed .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .legend .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .legend figure.big,.legend figure.last{grid-column:span 2;grid-row:auto}
+  .legend .grid.g3{grid-template-columns:1fr}
+  .legend .lg-head{grid-template-columns:1fr;gap:0}
+  .legend .lg-head .lead{margin-top:14px}
+  .vs-grid{grid-template-columns:1fr}
+  .vs ul{grid-template-columns:1fr}
+  .who .cols,.quote .cols{grid-template-columns:1fr}
+  .who-ph{order:-1}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  /* header: the phone number becomes a Call button that stays on screen with the header */
+  .top .wrap{gap:10px}
+  .top .logo img{height:20px}
+  .top .acts{gap:8px}
+  .top .btn{padding:0 12px}
+  .top .tel{justify-content:center;padding:0 12px;border:2px solid var(--white);border-radius:4px;font:700 16px/1 "Barlow Condensed",sans-serif;letter-spacing:.04em;text-transform:uppercase}
+  .top .tel .tel-word{display:inline}
+  .top .tel .tel-num{display:none}
+  /* hero: fills the first screen exactly. The photo sits on top and takes whatever height is left over, so the
+     headline and BOTH buttons are on screen without scrolling (checked at 375x667, 390x844, 412x915). */
+  .hero{flex-direction:column;align-items:stretch;min-height:calc(100vh - 71px);min-height:calc(100svh - 71px);background:var(--ink)}
+  .hero::before{position:static;flex:1000 1 0;min-height:190px;max-height:93vw;background:linear-gradient(180deg,rgba(11,12,13,0) 70%,rgba(11,12,13,1) 100%),url(assets/simple/hero-bed-phone.jpg) center 20%/cover no-repeat}
+  .hero .wrap{flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;padding-top:6px;padding-bottom:22px}
+  .hero h1{font-size:44px}
+  .hero p{font-size:18px;margin:14px 0 20px}
+  .hero .btn{flex:1 1 100%}
+  section{padding:52px 0}
+  .fgrid{grid-template-columns:1fr}
+  form{padding:18px}
+  .go .btn{width:100%}
+}
+@media (max-width:640px) and (max-height:700px){
+  .hero h1{font-size:40px}
+  .hero p{font-size:16px;margin:10px 0 16px}
+}
+@media (max-width:359px){
+  .top .logo img{height:17px}
+  .top .btn,.top .tel{padding:0 9px;font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
-<body id="top" class="v3 v4">
-<header class="site-header">
-  <div class="container inner">
-    <a class="brand" href="#top" aria-label="Bigfoot Truck Beds home"><img class="emblem" src="assets/img/logo.svg" alt="Bigfoot Truck Beds" /></a>
-    <nav class="nav" aria-label="Main">
-      <a href="beds.html">Beds</a>
-      <a href="build.html">Build Yours</a>
-      <a href="accessories.html">Accessories</a>
-      <a href="#shop">The Shop</a>
-    </nav>
-    <div class="header-actions">
-      <a class="header-phone" href="tel:8635897616"><small>Call the shop</small>(863) 589-7616</a>
-      <a class="btn btn-primary btn-sm" href="build.html">Build Yours</a>
-      <button class="mobile-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Bigfoot Truck Beds"><img src="assets/img/logo.svg" alt="Bigfoot Truck Beds" width="293" height="45" /></a>
+    <div class="acts">
+      <a class="tel" href="tel:+18132951151" data-phone aria-label="Call (813) 295-1151"><span class="tel-word">Call</span><span class="tel-num">(813) 295-1151</span></a>
+      <a class="btn btn-gold" href="#quote">Get a quote</a>
     </div>
   </div>
 </header>
-<nav class="mobile-nav" aria-label="Mobile">
-  <a href="beds.html">Beds</a><a href="build.html">Build Yours</a><a href="accessories.html">Accessories</a><a href="#shop">The Shop</a><a href="tel:8635897616">(863) 589-7616</a>
-</nav>
 
-<main>
+<main id="top">
 
-<!-- ============ STORY: the bed in the centre, five beds on the rail, x-ray on scroll ============ -->
-<section class="v4-story" aria-label="The beds">
-  <div class="v4-pin">
-    <div class="v4-stage">
-      <div class="v4-arc" aria-hidden="true"><i></i><i></i></div>
-      <h1 class="v4-h1"><span class="a">Built for</span> <span class="b">your truck<i>.</i></span></h1>
-      <div class="v4-canvas" id="v4-canvas"><img class="v4-fallback" id="v4-fallback" src="assets/img/beds/ridge.webp" alt="Line drawing of the Ridge skirted flatbed, 8 foot 6 by 97 inches" /></div>
-      <svg class="v4-dims" aria-hidden="true"></svg>
+<section class="hero" aria-label="Bigfoot Truck Beds">
+  <div class="wrap">
+    <h1>Steel truck beds, <span>built in Mulberry</span></h1>
+    <p>From the people behind Bigfoot Trailers. Steel beds for Ford, Chevy, GMC and Ram.</p>
+    <div class="row">
+      <a class="btn btn-gold" href="#quote">Get a quote</a>
+      <a class="btn btn-line" href="tel:+18132951151" data-phone>Call (813) 295-1151</a>
+    </div>
+  </div>
+</section>
 
-      <div class="v4-rail" role="tablist" aria-label="Bed series" aria-orientation="vertical">
-        <button role="tab" data-slug="track" aria-selected="false" tabindex="-1"><i>01</i><b>Track</b></button>
-        <button role="tab" data-slug="ridge" aria-selected="true"><i>02</i><b>Ridge</b></button>
-        <button role="tab" data-slug="hauler" aria-selected="false" tabindex="-1"><i>03</i><b>Hauler</b></button>
-        <button role="tab" data-slug="range" aria-selected="false" tabindex="-1"><i>04</i><b>Range</b></button>
-        <button role="tab" data-slug="crew" aria-selected="false" tabindex="-1"><i>05</i><b>Crew</b></button>
+<section class="what" id="what">
+  <div class="wrap">
+    <p class="kick">What we build</p>
+    <h2>Two series of steel truck beds</h2>
+    <p class="lead">The Tracker Series and the Legend Series, both built in Mulberry, with options on both. Tell us the year, make and model and we'll quote the one that fits.</p>
+    <div class="series">
+      <article>
+        <p class="tag">Light duty</p>
+        <h3>Tracker Series</h3>
+        <p>Our light-duty line, with options. The first one is in the photos below.</p>
+        <a href="#first-bed">See the Tracker</a>
+      </article>
+      <article>
+        <p class="tag">Heavier duty</p>
+        <h3>Legend Series</h3>
+        <p>Our heavier-duty line, with options too.</p>
+        <a href="#legend">See the Legend</a>
+      </article>
+    </div>
+    <ul>
+      <li><b>Ford, Chevy, GMC, Ram</b><span>Tell us what you drive.</span></li>
+      <li><b>Pickup or cab and chassis</b><span>Single or dual rear wheel.</span></li>
+      <li><b>Built to order</b><span>Cut, bent and welded in Mulberry, not shipped in.</span></li>
+      <li><b>Not sure which one?</b><span>Send us the truck. We'll tell you.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Filled from assets/simple/first-bed.js. Stays hidden until the first-bed photos are added. -->
+<section class="bed" id="first-bed" hidden>
+  <div class="wrap">
+    <p class="kick" style="color:#c9c5ba">The first one</p>
+    <h2>First Tracker off the floor</h2>
+    <p class="lead" id="bed-lead">The first Tracker Series bed, our light-duty line, built in Mulberry.</p>
+    <div class="grid" id="bed-grid"></div>
+  </div>
+</section>
+
+<!-- 11/24/26: the Legend Series, first real photos. Plain img tags (no script), so the build finds and ships them by itself. -->
+<section class="legend" id="legend">
+  <div class="wrap">
+    <div class="lg-head">
+      <div>
+        <p class="kick">Heavier duty</p>
+        <h2>The Legend Series</h2>
       </div>
+      <p class="lead">Our heavier-duty line, with options. This one is on a Ram crew cab. Ask us about it when you call.</p>
+    </div>
+    <div class="grid g3">
+      <figure><div class="ph"><img src="assets/simple/legend/legend-side.jpg" alt="Bigfoot Legend Series truck bed on a white Ram crew cab, side view" loading="lazy" width="1200" height="800" /></div><figcaption><b>01</b>On a Ram crew cab</figcaption></figure>
+      <figure><div class="ph"><img src="assets/simple/legend/legend-front.jpg" alt="Bigfoot Legend Series truck bed on a white Ram crew cab, from the front corner" loading="lazy" width="1200" height="800" /></div><figcaption><b>02</b>From the front</figcaption></figure>
+      <figure><div class="ph"><img src="assets/simple/legend/legend-rack-toolbox.jpg" alt="Headache rack with the Bigfoot footprints cut in, on a Legend Series bed" loading="lazy" width="1200" height="800" /></div><figcaption><b>03</b>The headache rack</figcaption></figure>
+    </div>
+  </div>
+</section>
 
-      <aside class="v4-card" aria-live="polite">
-        <p class="v4-badge"><b id="v4-n">02</b><span>/ 05</span><span id="v4-kicker">Skirted flatbed</span></p>
-        <h2 class="v4-name" id="v4-name">Ridge</h2>
-        <p class="v4-for" id="v4-for">The daily truck. Ranch, service, hauling. Boxes built in, nothing hanging under the deck.</p>
-        <dl class="v4-specs" id="v4-specs">
-          <div><dt>Deck plate</dt><dd>3/16"</dd></div>
-          <div><dt>Long sills</dt><dd>4" channel</dd></div>
-          <div><dt>Crossmembers</dt><dd>12" OC</dd></div>
-          <div><dt>Toolboxes</dt><dd>2 std</dd></div>
-        </dl>
-        <div class="v4-acts">
-          <a class="btn btn-primary btn-lg" id="v4-build" href="build.html#s=ridge">Build this bed</a>
-          <a class="v4-more" id="v4-more" href="bed.html?s=ridge">Full spec</a>
+<!-- 11/24/26: was the Bigfoot Trailers shop/crew section (Drew: no staff photos). Now the two lines side by side, real photos only. -->
+<section class="vs" id="compare">
+  <div class="wrap">
+    <p class="kick">Two series</p>
+    <h2>Tracker or Legend</h2>
+    <div class="vs-grid">
+      <article>
+        <div class="ph"><img src="assets/simple/legend/compare-tracker.jpg" alt="The first Bigfoot Tracker Series steel truck bed, seen from the rear" loading="lazy" width="1200" height="900" /><span class="badge">Tracker Series</span></div>
+        <div class="body">
+          <p class="tag">Light duty</p>
+          <p class="line">The light-duty line</p>
+          <p class="has">At a glance</p>
+          <ul><li>Light duty</li><li>Options available</li><li>Built in Mulberry</li><li>Ford, Chevy, GMC, Ram</li></ul>
+          <a class="btn btn-line" href="#quote">Quote a Tracker</a>
         </div>
-      </aside>
-
-      <p class="v4-hint" aria-hidden="true"><span>Drag to turn</span><i></i><span>Scroll to see under the deck</span></p>
+      </article>
+      <article class="legend-card">
+        <div class="ph"><img src="assets/simple/legend/compare-legend.jpg" alt="Bigfoot Legend Series steel truck bed on a Ram crew cab" loading="lazy" width="1200" height="900" /><span class="badge">Legend Series</span></div>
+        <div class="body">
+          <p class="tag">Heavier duty</p>
+          <p class="line">The heavier-duty line</p>
+          <p class="has">At a glance</p>
+          <ul><li>Heavier duty</li><li>Options available</li><li>Built in Mulberry</li><li>Ford, Chevy, GMC, Ram</li></ul>
+          <a class="btn btn-gold" href="#quote">Quote a Legend</a>
+        </div>
+      </article>
     </div>
-    <ol class="v4-beats">
-      <li><span class="v4-beat-n">01</span><h2>What is under the deck.</h2><p>4" channel long sills run full length over your frame. 3" channel crossmembers on 12" centers, so the deck does not oil-can under a skid steer.</p></li>
-      <li><span class="v4-beat-n">02</span><h2>Then it has to fit.</h2><p>Cab to axle decides the size. Run a tape from the back of the cab to the center of the rear axle hub. <a href="#fit">Find your size</a></p></li>
-    </ol>
+    <p class="vs-note">Not sure which one fits your truck? Send us the year, make and model and we'll tell you.</p>
   </div>
 </section>
 
-<!-- ============ MARQUEE ============ -->
-<div class="v4-marquee" aria-hidden="true">
-  <div class="v4-marquee-track">
-    <span>Cut <i>/</i> Formed <i>/</i> Welded <i>/</i> Blasted <i>/</i> Painted <i>/</i> Mulberry, Florida <i>/</i> </span>
-    <span>Cut <i>/</i> Formed <i>/</i> Welded <i>/</i> Blasted <i>/</i> Painted <i>/</i> Mulberry, Florida <i>/</i> </span>
-  </div>
-</div>
-
-<!-- ============ FIT: light ground, true-scale plan drawing ============ -->
-<section class="v3-fit v3-light" id="fit">
-  <div class="v3-fit-grid">
-    <div class="v3-fit-left">
-      <h2 class="v3-fit-h"><span class="v4-idx"><b>02</b> Fit</span>Cab to axle<br />decides the size.</h2>
-      <figure class="v3-plan">
-        <svg viewBox="-58 -66 262 134" role="img" aria-label="Top view drawing of the seven deck sizes, drawn to scale behind a truck cab">
-          <defs><pattern id="v3-ft" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0H0V12" fill="none" stroke="currentColor" stroke-opacity=".13" stroke-width=".35" /></pattern></defs>
-          <rect x="-58" y="-66" width="262" height="134" fill="url(#v3-ft)" />
-          <path class="cab" d="M-50 -34 Q-50 -40 -44 -40 H-10 Q-5 -40 -5 -35 V35 Q-5 40 -10 40 H-44 Q-50 40 -50 34 Z" />
-          <path class="cab" d="M-40 -32 H-30 V32 H-40 Z" />
-          <text class="cabt" x="-17.5" y="1.6" text-anchor="middle">CAB</text>
-          <g class="v3-plan-sizes">
-            <rect data-i="6" x="0" y="-48.5" width="192" height="97" />
-            <rect data-i="5" x="0" y="-48.5" width="168" height="97" />
-            <rect data-i="4" x="0" y="-48.5" width="136" height="97" />
-            <rect data-i="3" x="0" y="-48.5" width="112" height="97" />
-            <rect data-i="2" x="0" y="-48.5" width="102" height="97" class="on" />
-            <rect data-i="1" x="0" y="-42" width="102" height="84" />
-            <rect data-i="0" x="0" y="-42" width="84" height="84" />
-          </g>
-          <text class="v3-plan-active" x="51" y="2" text-anchor="middle">8'6" x 97"</text>
-          <g class="v3-plan-ticks">
-            <text x="84" y="59" text-anchor="middle">7'</text>
-            <text x="102" y="59" text-anchor="middle">8'6"</text>
-            <text x="116" y="65" text-anchor="middle">9'4"</text>
-            <text x="136" y="59" text-anchor="middle">11'4"</text>
-            <text x="168" y="59" text-anchor="middle">14'</text>
-            <text x="192" y="59" text-anchor="middle">16'</text>
-          </g>
-        </svg>
-        <figcaption>Top view, drawn to scale. Grid is one foot.</figcaption>
-      </figure>
+<section class="who" id="who">
+  <div class="wrap cols">
+    <div>
+      <p class="kick">Who we are</p>
+      <h2>Part of the Bigfoot family</h2>
+      <p>Bigfoot Truck Beds is the truck bed company of the Bigfoot family, at 4320 State Road 60 W in Mulberry, Florida.</p>
+      <p>When you call, you talk to the people who build it.</p>
     </div>
-    <div class="v3-fit-right">
-      <p class="v3-fit-lead">Three things decide which bed fits. Single or dual rear wheel. A take-off pickup or a bare cab and chassis. And the cab to axle measurement.</p>
-      <div class="v3-fit-rows" role="group" aria-label="Deck sizes">
-        <button type="button" data-i="0" data-label="7' x 84&quot;" data-len="84"><b>7' x 84"</b><span>Short bed, single rear wheel. 38-42" cab to axle.</span></button>
-        <button type="button" data-i="1" data-label="8'6&quot; x 84&quot;" data-len="102"><b>8'6" x 84"</b><span>Long bed, single rear wheel. 56-58" cab to axle.</span></button>
-        <button type="button" data-i="2" data-label="8'6&quot; x 97&quot;" data-len="102" class="on" aria-pressed="true"><b>8'6" x 97"</b><span>Long bed, dual rear wheel. 56-58" cab to axle.</span></button>
-        <button type="button" data-i="3" data-label="9'4&quot; x 97&quot;" data-len="112"><b>9'4" x 97"</b><span>Cab and chassis. 60" cab to axle.</span></button>
-        <button type="button" data-i="4" data-label="11'4&quot; x 97&quot;" data-len="136"><b>11'4" x 97"</b><span>Cab and chassis. 84" cab to axle.</span></button>
-        <button type="button" data-i="5" data-label="14' x 97&quot;" data-len="168"><b>14' x 97"</b><span>Cab and chassis. 108" cab to axle.</span></button>
-        <button type="button" data-i="6" data-label="16' x 97&quot;" data-len="192"><b>16' x 97"</b><span>Cab and chassis. 120" cab to axle.</span></button>
-      </div>
-      <p class="v3-fit-foot">Seven deck sizes for Ford, Chevrolet, GMC and Ram. <a href="beds.html">Open the fit guide</a></p>
-    </div>
+    <figure class="who-ph"><img src="assets/simple/who-tracker.jpg" alt="The first Bigfoot Tracker Series truck bed in the shop doorway" loading="lazy" width="1200" height="800" /><figcaption>The first Tracker Series bed</figcaption></figure>
   </div>
 </section>
 
-<!-- ============ STANDARD BUILD: light ground, spec sheet + paint ============ -->
-<section class="v3-std v3-light" id="standard">
-  <div class="v3-std-grid">
-    <div class="v3-std-sheet">
-      <h2 class="v3-std-h"><span class="v4-idx"><b>03</b> Standard build</span>On every bed before you add an option.</h2>
-      <dl class="v3-sheet">
-        <div><dt>Deck</dt><dd>3/16" steel treadplate</dd></div>
-        <div><dt>Long sills</dt><dd>4" channel, full length</dd></div>
-        <div><dt>Crossmembers</dt><dd>3" channel on 12" centers</dd></div>
-        <div><dt>Paint</dt><dd>Black standard</dd></div>
-        <div><dt>Fitment</dt><dd>7 deck sizes, 7' to 16'</dd></div>
-        <div><dt>Build time</dt><dd>Call for the current lead time</dd></div>
-      </dl>
-      <p class="v3-std-note">Specs shown are the standard build and may change. Confirm with the shop before you order.</p>
+<!-- 11/25/26 pm: back to "Get a quote" (Drew). Quote form: posts to the Truck Beds portal (portal/app.py POST /quote), which saves it, lists it for the shop and emails it. -->
+<section class="quote" id="quote">
+  <div class="wrap cols">
+    <div>
+      <p class="kick" style="color:#c9c5ba">Get a quote</p>
+      <h2>Tell us about your truck</h2>
+      <p class="lead">Fill this in and someone from the shop will call you to talk it through and give you a number. Just want first word when the full specs are out? Send it and say so in the last box.</p>
+      <p class="call">Rather talk now? <a href="tel:+18132951151" data-phone>(813) 295-1151</a></p>
     </div>
-    <div class="v3-std-media">
-      <div class="v3-paint" aria-label="Paint colors">
-        <i style="--c:#0b0c0d"></i><i style="--c:#eef0f1"></i><i style="--c:#878d93"></i><i style="--c:#EDC108"></i>
-        <p>Black standard. White, gray and Bigfoot Yellow on request.</p>
+    <div>
+      <form id="qf" novalidate>
+        <div class="fgrid">
+          <div class="f" data-f="name"><label for="qf-name">Name *</label><input id="qf-name" name="name" type="text" maxlength="80" autocomplete="name" required /><span class="err">Add your name.</span></div>
+          <div class="f" data-f="phone"><label for="qf-phone">Phone *</label><input id="qf-phone" name="phone" type="tel" maxlength="30" autocomplete="tel" inputmode="tel" required /><span class="err">Add a phone number we can call.</span></div>
+          <div class="f" data-f="email"><label for="qf-email">Email</label><input id="qf-email" name="email" type="email" maxlength="120" autocomplete="email" inputmode="email" /><span class="err">Check the email, or leave it blank.</span></div>
+          <div class="f" data-f="place"><label for="qf-place">City or ZIP</label><input id="qf-place" name="place" type="text" maxlength="80" autocomplete="postal-code" /></div>
+          <div class="f wide" data-f="truck"><label for="qf-truck">Your truck (year, make, model)</label><input id="qf-truck" name="truck" type="text" maxlength="120" placeholder="2021 Ford F-350 dually" /></div>
+          <div class="f wide" data-f="bed"><label for="qf-bed">Pickup or cab and chassis?</label>
+            <select id="qf-bed" name="bed"><option>Not sure yet</option><option>Pickup</option><option>Cab and chassis</option></select></div>
+          <div class="f wide" data-f="notes"><label for="qf-notes">Anything else</label><textarea id="qf-notes" name="notes" maxlength="1500" placeholder="What you haul, light or heavy duty, gooseneck or not, when you need it"></textarea></div>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="qf-extra">Leave this empty</label><input id="qf-extra" name="bf_extra" type="text" tabindex="-1" autocomplete="off" /></div>
+        <p id="qf-err" role="alert" hidden></p>
+        <div class="go">
+          <button class="btn btn-gold" id="qf-send" type="submit">Get a quote</button>
+          <p class="fine">We only use this to call you back about your bed.</p>
+        </div>
+      </form>
+      <div class="done" id="qf-done" tabindex="-1" hidden>
+        <p class="kick" style="color:var(--gold);margin:0">Request sent</p>
+        <h3 id="qf-done-h">Got it</h3>
+        <p id="qf-done-p">Someone from the shop will call you soon.</p>
+        <p>Need us sooner? Call <a href="tel:+18132951151" data-phone>(813) 295-1151</a>, Monday to Friday, 9 AM to 3 PM.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ SHOP: full bleed ============ -->
-<section class="v3-shop" id="shop">
-  <figure class="v3-shop-wide">
-    <p class="v4-idx v4-idx-shop"><b>04</b> The shop</p>
-    <img src="assets/v3/laser-poster.jpg" alt="Laser cutting table on the shop floor in Mulberry, Florida" loading="lazy" />
-    <video data-lazy muted loop playsinline preload="none" data-src="assets/video/laser.mp4"></video>
-    <figcaption>Shop footage: the laser table. Mulberry, FL.</figcaption>
-  </figure>
-  <h2 class="v3-shop-h"><span>Cut, formed</span> <span>and welded in</span> <span>one building.</span></h2>
-  <div class="v3-shop-grid">
-    <p class="v3-shop-lead"><b>Plate goes in one door, a finished bed comes out the other.</b> Cut, formed, welded, blasted and painted in one building in Mulberry.</p>
-    <figure class="v3-clip v3-clip-a">
-      <img src="assets/img/shop/press-brake.jpg" alt="Press brake forming steel plate" loading="lazy" />
-      <video data-lazy muted loop playsinline preload="none" data-src="assets/video/press-brake.mp4"></video>
-      <figcaption><b>Press brake</b> Skirts and rack formed from one piece.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ FAQ: light ============ -->
-<section class="v3-faq v3-light" id="faq">
-  <div class="v3-faq-grid">
-    <h2 class="v3-faq-h"><span class="v4-idx"><b>05</b> Questions</span>Asked before every order.</h2>
-    <div class="v3-faq-list" id="v3-faq-list"><noscript><p>Call the shop at (863) 589-7616 with any question about fit, finish or lead time.</p></noscript></div>
-  </div>
-</section>
-
-<!-- ============ CTA: gold ============ -->
-<section class="v3-cta">
-  <div class="v3-cta-in">
-    <h2 class="v3-cta-h">Build yours.</h2>
-    <div class="v3-cta-side">
-      <p>Takes about two minutes. Or call the shop and talk to someone who has welded one.</p>
-      <div class="v3-cta-acts"><a class="v3-btn-ink" href="build.html">Build Yours</a><a class="v3-cta-tel" href="tel:8635897616">(863) 589-7616</a></div>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="kick">Contact</p>
+    <h2>Call the shop</h2>
+    <div class="cols">
+      <div class="card"><b>Phone</b><a href="tel:+18132951151" data-phone>(813) 295-1151</a></div>
+      <div class="card"><b>Shop</b><a href="https://www.google.com/maps/search/?api=1&amp;query=Bigfoot+Truck+Beds+4320+State+Road+60+W+Mulberry+FL+33860" rel="noopener" target="_blank" aria-label="Directions to Bigfoot Truck Beds, 4320 State Road 60 W, Mulberry, FL 33860 (opens Google Maps)">4320 State Road 60 W<br />Mulberry, FL 33860</a></div>
+      <div class="card"><b>Hours</b><span>Monday to Friday<br />9 AM to 3 PM</span></div>
+      <div class="card"><b>Facebook</b><a href="https://www.facebook.com/bigfoottruckbeds" rel="noopener" target="_blank" aria-label="Bigfoot Truck Beds on Facebook (opens in a new tab)">Bigfoot Truck Beds</a></div>
     </div>
   </div>
 </section>
@@ -258,21 +496,14 @@
 </main>
 
 <footer>
-  <div class="container">
-    <div class="cols">
-      <div><img src="assets/img/logo-stacked.svg" alt="Bigfoot Truck Beds" style="height:84px;margin-bottom:16px" /><p>Steel truck beds built in Mulberry, Florida.</p></div>
-      <div><h4>Beds</h4><a href="bed.html?s=track">Track flatbed</a><a href="bed.html?s=ridge">Ridge skirted</a><a href="bed.html?s=hauler">Hauler hotshot</a><a href="bed.html?s=range">Range bale bed</a><a href="bed.html?s=crew">Crew service body</a></div>
-      <div><h4>Buy</h4><a href="build.html">Build yours</a><a href="accessories.html">Accessories</a><a href="beds.html">Fit guide</a></div>
-      <div><h4>Shop</h4><a href="tel:8635897616">(863) 589-7616</a><a href="#shop">The shop</a></div>
-    </div>
-    <div class="fine"><span>&copy; 2026 Bigfoot Truck Beds. Mulberry, FL.</span><span>Specs shown are the standard build and may change. Confirm with the shop before you order.</span></div>
+  <div class="wrap">
+    <img src="assets/img/logo.svg" alt="Bigfoot Truck Beds" width="293" height="45" />
+    <span>&copy; 2026 Bigfoot Truck Beds LLC. Mulberry, Florida. <a href="privacy.html" style="color:#a7a397">Privacy</a></span>
   </div>
 </footer>
-<div class="demo-note"><b>Demo build.</b> Bed names, specs, features and shop claims are placeholders for the truck bed team to confirm. No pricing is shown yet.</div>
-<script src="assets/js/data.js"></script>
-<script src="assets/js/site.js"></script>
-<script src="assets/v3/page.js"></script>
-<script src="assets/v4/pick.js"></script>
-<script type="module" src="assets/v4/stage.js"></script>
+
+<script src="assets/simple/config.js"></script>
+<script src="assets/simple/first-bed.js"></script>
+<script src="assets/simple/page.js"></script>
 </body>
 </html>

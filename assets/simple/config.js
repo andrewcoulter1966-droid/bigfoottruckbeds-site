@@ -9,4 +9,4 @@
    is sent, Contact when a call button is tapped. Neither loads for a visitor whose browser asks not to be tracked.
 
    The site's own visit counting (no cookies, read at the portal's /stats page) is separate and always on. */
-window.BF_TRACK = { metaPixelId: "", ga4Id: "" };
+window.BF_TRACK = { metaPixelId: "", ga4Id: "G-30NXG3DJPB" };
